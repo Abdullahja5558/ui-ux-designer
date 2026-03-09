@@ -13,30 +13,77 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Samia | UI.UX Designer",
-  description: "Specializing in high-converting user interfaces and seamless digital experiences. Explore the portfolio of Samia, a UI/UX Designer dedicated to user-centric design.",
-  keywords: ["UI/UX Designer", "Product Design", "Web Design", "User Experience", "Samia Design"],
+  metadataBase: new URL("https://samia-uiux.vercel.app"),
+
+  title: {
+    default: "Samia | UI/UX Designer",
+    template: "%s | Samia UIUX",
+  },
+
+  description:
+    "Samia is a professional UI/UX Designer specializing in modern, high-converting user interfaces, web design, and seamless digital experiences. Explore portfolio, projects, and design work.",
+
+  keywords: [
+    "UI UX Designer",
+    "Samia UIUX",
+    "Portfolio Designer",
+    "Web Designer",
+    "Product Designer",
+    "User Experience Designer",
+    "UI Designer Portfolio",
+    "Figma Designer",
+    "Frontend Designer",
+  ],
+
   authors: [{ name: "Samia" }],
+
   creator: "Samia",
+  publisher: "Samia Portfolio",
+
+  robots: {
+    index: true,
+    follow: true,
+  },
+
+  icons: {
+    icon: "/favicon.ico",
+  },
+
   openGraph: {
-    type: "website",
-    locale: "en_US",
+    title: "Samia | UI/UX Designer Portfolio",
+    description:
+      "Explore the UI/UX portfolio of Samia. Modern, clean, and user-centered digital design.",
     url: "https://samia-uiux.vercel.app",
     siteName: "Samia Portfolio",
-    title: "Samia | UI/UX Designer",
-    description: "Designing digital products that balance aesthetics with functionality.",
-  }
+    locale: "en_US",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Samia | UIUX Designer",
+    description:
+      "Portfolio of Samia — UI/UX Designer creating modern digital experiences.",
+  },
+
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+  },
+
+  themeColor: "#000000",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en"
-    suppressContentEditableWarning={true}
-    suppressHydrationWarning={true}
+    <html
+      lang="en"
+      suppressContentEditableWarning
+      suppressHydrationWarning
     >
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
