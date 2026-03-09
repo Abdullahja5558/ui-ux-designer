@@ -4,12 +4,11 @@ import React, { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { Sparkles, Fingerprint } from "lucide-react";
 import Lenis from "lenis";
-// Import useRouter for navigation
 import { useRouter } from "next/navigation";
 
 const Hero = () => {
   const containerRef = useRef(null);
-  const router = useRouter(); // Initialize router
+  const router = useRouter();
 
   // 1. Lenis Smooth Scroll Setup
   useEffect(() => {
@@ -50,12 +49,10 @@ const Hero = () => {
 
   // Click handler function
   const handleExploreClick = () => {
-    // Agar "Work" section isi page par hai to ye use karein:
     const workSection = document.getElementById("work-section");
     if (workSection) {
       workSection.scrollIntoView({ behavior: "smooth" });
     } else {
-      // Agar doosre page par jana hai (/work par):
       router.push("/#work"); 
     }
   };
@@ -63,7 +60,7 @@ const Hero = () => {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[150vh] w-full flex flex-col items-center justify-start overflow-hidden bg-[#fafafa] pt-[25vh]"
+      className="relative min-h-[150vh] w-full flex flex-col items-center justify-start overflow-hidden bg-[#fafafa] pt-[20vh]"
     >
       {/* --- CROSSING RIBBONS LAYER --- */}
       <div className="fixed inset-0 pointer-events-none z-10 flex items-center justify-center overflow-hidden">
@@ -110,7 +107,7 @@ const Hero = () => {
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-black/5 shadow-sm mb-6"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 backdrop-blur-md border border-white/20 shadow-sm mb-6"
         >
           <Sparkles size={14} className="text-yellow-500" />
           <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-black/50">
@@ -118,30 +115,38 @@ const Hero = () => {
           </span>
         </motion.div>
 
-        <motion.h1 className="text-[13vw] md:text-[9vw] font-black tracking-tighter leading-[0.85] text-black mb-8 select-none">
+        <motion.h1 className="text-[13vw] md:text-[9vw] font-black tracking-tighter leading-[0.85] text-black mb-12 select-none">
           SAMIA<br />
           <span className="text-transparent bg-clip-text bg-gradient-to-b from-black/80 to-black/20">
             .UI/UX
           </span>
         </motion.h1>
 
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8 mt-10">
-          <p className="max-w-[320px] text-left text-sm text-gray-500 leading-relaxed border-l-2 border-black/5 pl-6 italic">
+        {/* --- GLASSMORPHISM BOX --- */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="flex flex-col md:flex-row items-center justify-between gap-10 p-8 md:p-12 rounded-[3rem] bg-white/30 backdrop-blur-xl border border-white/40 shadow-[0_20px_50px_rgba(0,0,0,0.05)]"
+        >
+          <p className="max-w-[320px] text-left text-sm text-gray-500 leading-relaxed border-l-2 border-black/10 pl-6 italic">
             Focusing on <span className="text-black font-bold">Human-Centered Design</span> to create products that people love.
           </p>
 
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-6">
             <button 
               onClick={handleExploreClick}
               className="px-10 py-5 bg-black text-white rounded-full text-[11px] font-bold uppercase tracking-[0.2em] shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer"
             >
               Explore Projects
             </button>
-            <div className="w-16 h-16 border border-black/10 rounded-full flex items-center justify-center cursor-pointer hover:bg-white transition-all shadow-sm group">
-              <Fingerprint size={28} strokeWidth={1.5} className="group-hover:text-yellow-600 transition-colors" />
+            
+            {/* Glassy Fingerprint Icon */}
+            <div className="w-16 h-16 bg-white/40 backdrop-blur-lg border border-white/60 rounded-full flex items-center justify-center cursor-pointer hover:bg-white hover:scale-110 transition-all shadow-sm group">
+              <Fingerprint size={28} strokeWidth={1.5} className="group-hover:text-yellow-600 transition-colors text-black/70" />
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
