@@ -58,7 +58,7 @@ const Navbar = () => {
           )}
 
           {/* LOGO */}
-          <Link href="/" className="z-50 px-3 flex items-center gap-2 group">
+          <Link href="/" aria-label="Samia - UI/UX Designer & Developer Home" className="z-50 px-3 flex items-center gap-2 group">
             <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center transition-transform group-hover:rotate-[360deg] duration-1000">
               <div className="w-2.5 h-2.5 bg-white rounded-sm" />
             </div>
@@ -103,6 +103,8 @@ const Navbar = () => {
             {/* Premium Hamburger Icon */}
             <button 
               onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle navigation menu"
+              aria-expanded={isOpen}
               className="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 z-50 rounded-full bg-black/5 active:scale-90 transition-transform"
             >
               <motion.span 

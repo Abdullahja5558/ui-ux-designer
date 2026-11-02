@@ -78,8 +78,8 @@ const Footer = () => {
           
           <div className="flex items-center gap-4">
              <div className="w-12 h-12 bg-zinc-900 rounded-2xl flex items-center justify-center font-black text-xl">S.</div>
-             <p className="text-[10px] font-black uppercase tracking-widest text-zinc-500 max-w-[150px]">
-               Visual Architect & UX Strategist
+             <p className="text-[10px] font-black uppercase tracking-widest text-zinc-500 max-w-[180px]">
+               UI/UX Designer & Creative Developer
              </p>
           </div>
 
@@ -91,8 +91,8 @@ const Footer = () => {
           </div>
 
           <div className="flex gap-10 text-[10px] font-black uppercase tracking-widest text-zinc-400">
-             <a href="#" className="hover:text-white transition-colors">Local Time 20:34 PKT</a>
-             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+             <span className="hover:text-white transition-colors">Local Time (PKT)</span>
+             <a href="/about" className="hover:text-white transition-colors">About</a>
           </div>
 
         </div>
@@ -106,6 +106,9 @@ const SocialLink = ({ name, href, icon }: any) => {
   return (
     <motion.a
       href={href}
+      aria-label={`Follow Samia on ${name}`}
+      rel="noopener noreferrer"
+      target="_blank"
       whileHover={{ y: -10 }}
       className="group flex flex-col gap-4 p-8 border border-white/5 rounded-3xl hover:bg-zinc-900/50 hover:border-white/20 transition-all duration-500"
     >

@@ -118,8 +118,9 @@ const Hero = () => {
         <motion.h1 className="text-[13vw] md:text-[9vw] font-black tracking-tighter leading-[0.85] text-black mb-12 select-none">
           SAMIA<br />
           <span className="text-transparent bg-clip-text bg-gradient-to-b from-black/80 to-black/20">
-            .UI/UX
+            .UI/UX & DEVELOPER
           </span>
+          <span className="sr-only"> - UI/UX Designer & Creative Frontend Developer Portfolio</span>
         </motion.h1>
 
         {/* --- GLASSMORPHISM BOX --- */}
