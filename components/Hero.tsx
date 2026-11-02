@@ -104,16 +104,7 @@ const Hero = () => {
 
       {/* --- MAIN CONTENT --- */}
       <div className="relative z-20 text-center px-6 max-w-6xl">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 backdrop-blur-md border border-white/20 shadow-sm mb-6"
-        >
-          <Sparkles size={14} className="text-yellow-500" />
-          <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-black/50">
-            Designing the Future
-          </span>
-        </motion.div>
+        
 
         <motion.h1 className="text-[13vw] md:text-[9vw] font-black tracking-tighter leading-[0.85] text-black mb-12 select-none">
           SAMIA<br />
