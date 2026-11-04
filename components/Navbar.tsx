@@ -52,13 +52,20 @@ const Navbar = () => {
           layout
           transition={{ type: "spring", stiffness: 220, damping: 28 }}
           className={`
-            pointer-events-auto relative flex items-center justify-between transition-all duration-300 w-full max-w-7xl px-5 sm:px-8
+            pointer-events-auto relative flex items-center justify-between transition-all duration-500 w-full max-w-7xl px-5 sm:px-8
             ${isScrolled
-              ? "py-2.5 rounded-full bg-[#FAF9FF]/85 backdrop-blur-2xl border border-[#EDE9FF] shadow-[0_8px_30px_rgba(112,64,245,0.08)]"
-              : "py-3 bg-transparent border-0 border-transparent shadow-none"
+              ? "py-2.5 rounded-full bg-white/75 backdrop-blur-3xl backdrop-saturate-[200%] border border-white/80 ring-1 ring-white/50 shadow-[0_20px_45px_-12px_rgba(112,64,245,0.12),0_4px_16px_rgba(17,17,22,0.03),inset_0_1.5px_1px_rgba(255,255,255,1),inset_0_-1px_1px_rgba(255,255,255,0.4),inset_0_0_24px_rgba(255,255,255,0.2)] overflow-hidden"
+              : "py-3 bg-transparent border-0 border-transparent shadow-none ring-0 overflow-visible"
             }
           `}
         >
+          {/* Specular Light Reflection Bars: ONLY VISIBLE WHEN SCROLLED */}
+          {isScrolled && (
+            <>
+              <div className="absolute inset-x-8 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-white to-transparent opacity-95 pointer-events-none" />
+              <div className="absolute inset-x-12 bottom-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none" />
+            </>
+          )}
           {/* LOGO: navbar-2.png */}
           <Link
             href="/"
@@ -97,7 +104,7 @@ const Navbar = () => {
                   <motion.span
                     layoutId="navbar-hover-underline"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    className="absolute -bottom-0.5 left-0 right-0 h-[2px] bg-[#7040F5] rounded-full"
+                    className="absolute -bottom-0.5 left-0 right-0 h-[2px] bg-[#7040F5] rounded-full shadow-[0_2px_8px_rgba(112,64,245,0.4)]"
                   />
                 )}
               </Link>
@@ -109,7 +116,7 @@ const Navbar = () => {
             <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
               <Link
                 href="/#contact"
-                className="group hidden sm:inline-flex items-center justify-center gap-1.5 px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#111116] text-white hover:bg-[#7040F5] transition-all duration-300 shadow-sm"
+                className="group hidden sm:inline-flex items-center justify-center gap-1.5 px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#111116] text-white hover:bg-[#7040F5] transition-all duration-300 shadow-[0_4px_14px_rgba(17,17,22,0.15)] hover:shadow-[0_6px_20px_rgba(112,64,245,0.35)]"
               >
                 <span>Let's Talk</span>
                 <ArrowUpRight size={13} className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -141,7 +148,7 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* MOBILE DROPDOWN */}
+          {/* MOBILE DROPDOWN (LIQUID GLASSMORPHISM) */}
           <AnimatePresence>
             {isOpen && (
               <motion.div
@@ -149,14 +156,16 @@ const Navbar = () => {
                 initial="closed"
                 animate="open"
                 exit="closed"
-                className="absolute top-[calc(100%+10px)] left-0 right-0 bg-[#FAF9FF]/95 backdrop-blur-2xl border border-[#EDE9FF] rounded-3xl p-5 shadow-[0_16px_36px_rgba(112,64,245,0.08)] flex flex-col gap-2 md:hidden origin-top"
+                className="absolute top-[calc(100%+10px)] left-0 right-0 bg-white/75 backdrop-blur-3xl backdrop-saturate-[200%] border border-white/85 ring-1 ring-white/40 rounded-3xl p-5 shadow-[0_24px_50px_-12px_rgba(112,64,245,0.14),0_6px_20px_rgba(17,17,22,0.03),inset_0_1.5px_1px_rgba(255,255,255,1),inset_0_-1px_1px_rgba(255,255,255,0.4)] flex flex-col gap-2 md:hidden origin-top overflow-hidden"
               >
+                {/* Specular Top Reflection Highlight */}
+                <div className="absolute inset-x-8 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-white to-transparent opacity-90 pointer-events-none" />
                 {navLinks.map((link) => (
                   <motion.div key={link.name} variants={itemVariants}>
                     <Link
                       href={link.href}
                       onClick={() => setIsOpen(false)}
-                      className="block w-full py-3 px-4 rounded-xl text-center text-xs font-bold uppercase tracking-wider text-[#111116] hover:bg-[#EDE9FF] transition-colors"
+                      className="block w-full py-3 px-4 rounded-xl text-center text-xs font-bold uppercase tracking-wider text-[#111116] hover:bg-white/60 transition-colors"
                     >
                       {link.name}
                     </Link>
@@ -166,7 +175,7 @@ const Navbar = () => {
                   <Link
                     href="/#contact"
                     onClick={() => setIsOpen(false)}
-                    className="block w-full py-3 text-center rounded-xl text-xs font-bold uppercase tracking-wider bg-[#7040F5] text-white hover:bg-[#5e2ee6] transition-colors"
+                    className="block w-full py-3 text-center rounded-xl text-xs font-bold uppercase tracking-wider bg-[#7040F5] text-white hover:bg-[#5e2ee6] shadow-[0_4px_16px_rgba(112,64,245,0.3)] transition-colors"
                   >
                     Start a Project
                   </Link>
