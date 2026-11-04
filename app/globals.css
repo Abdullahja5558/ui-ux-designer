@@ -1,26 +1,52 @@
 @import "tailwindcss";
 
+button {
+  cursor: pointer;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FAF9FF;
+  --foreground: #111116;
+  --color-primary-purple: #7040F5;
+  --color-light-lavender: #EDE9FF;
+  --color-soft-violet: #A78BFA;
+  --color-deep-charcoal: #111116;
+  --color-muted-grey: #626477;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-purple-primary: #7040F5;
+  --color-lavender-light: #EDE9FF;
+  --color-violet-soft: #A78BFA;
+  --color-charcoal-deep: #111116;
+  --color-grey-muted: #626477;
+  --font-serif: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html, body {
+  scroll-behavior: smooth;
+  background-color: #FAF9FF;
+  color: #111116;
+  font-family: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  overflow-x: clip;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+*, ::before, ::after {
+  font-family: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea {
+  font-family: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+.font-script, .font-script * {
+  font-family: 'Caveat', cursive !important;
+}
+
+::selection {
+  background-color: #EDE9FF;
+  color: #7040F5;
 }

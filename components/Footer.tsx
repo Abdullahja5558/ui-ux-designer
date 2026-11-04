@@ -1,125 +1,111 @@
 "use client";
 
-import React, { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { ArrowUpRight, Github, Linkedin, Instagram, Twitter, Heart } from "lucide-react";
+import React from "react";
+import { ArrowUpRight, Mail, ShieldCheck } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
 
 const Footer = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  
-  // Scroll animation for the giant background text
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end end"]
-  });
-
-  const xMove = useTransform(scrollYProgress, [0, 1], [-500, 0]);
-  const springX = useSpring(xMove, { stiffness: 100, damping: 30 });
-
   return (
-    <footer 
-      ref={containerRef}
-      className="relative min-h-screen bg-black text-white flex flex-col justify-between overflow-hidden"
-    >
-      {/* 1. THE GIANT KINETIC TEXT (Background Animation) */}
-      <div className="absolute top-20 left-0 w-full whitespace-nowrap pointer-events-none select-none opacity-[0.03]">
-        <motion.h2 
-          style={{ x: springX }}
-          className="text-[30vw] font-black leading-none tracking-tighter"
-        >
-          SAMIA DESIGNER SAMIA DESIGNER
-        </motion.h2>
-      </div>
+    <div className="w-full bg-[#FAF9FF] px-2 sm:px-3 md:px-4 pb-0">
+      <footer className="relative bg-black text-white rounded-t-[28px] sm:rounded-t-[38px] md:rounded-t-[48px] rounded-b-none pt-12 sm:pt-16 pb-0 px-4 sm:px-8 md:px-12 overflow-hidden">
 
-      {/* 2. MAIN CONTENT AREA */}
-      <div className="relative z-10 flex-1 flex flex-col justify-center px-6 md:px-20 pt-40">
-        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-20 items-end">
-          
-          {/* Big CTA */}
-          <div className="space-y-10">
-            <motion.div 
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              className="space-y-4"
-            >
-              <p className="text-zinc-500 font-black uppercase tracking-[0.5em] text-[10px]">Project Inquiry</p>
-              <h3 className="text-5xl md:text-8xl font-black tracking-tighter leading-none">
-                LETS CREATE <br /> <span className="italic text-zinc-400 font-light italic">MAGIC</span> TOGETHER.
-              </h3>
-            </motion.div>
+        <div className="max-w-7xl mx-auto w-full relative z-10">
 
-            <motion.a 
-              href="mailto:uiuxsamia@gmail.com"
-              whileHover={{ x: 20 }}
-              className="flex items-center gap-6 group cursor-pointer"
-            >
-              <div className="w-20 h-20 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all duration-500">
-                <ArrowUpRight size={40} />
+          {/* Top Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12 pb-12 sm:pb-14 border-b border-white/10">
+
+            {/* Brand Col */}
+            <div className="sm:col-span-2 space-y-4">
+              <Link href="/" aria-label="AS CODEX Home" className="inline-block group">
+                <Image
+                  src="/navbar-2.png"
+                  alt="AS CODEX"
+                  width={180}
+                  height={60}
+                  className="h-8 sm:h-9 md:h-10 lg:h-11 w-auto object-contain brightness-0 invert opacity-95 group-hover:opacity-100 transition-opacity"
+                  priority
+                />
+              </Link>
+              <p className="text-xs sm:text-sm text-zinc-400 max-w-sm leading-relaxed font-normal">
+                Architecting scalable cloud platforms, enterprise microservices, and bespoke software solutions built for exponential business growth.
+              </p>
+              <div className="pt-2 flex items-center gap-2.5 text-xs text-zinc-500">
+                <ShieldCheck size={16} className="text-[#A78BFA] shrink-0" />
+                <span>Enterprise-Grade • Secure • Scalable</span>
               </div>
-              <span className="text-2xl md:text-4xl font-bold tracking-tight border-b-2 border-white/10 group-hover:border-white transition-all pb-2">
-                uiuxsamia@gmail.com
-              </span>
-            </motion.a>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="text-xs font-bold uppercase tracking-widest text-[#A78BFA] mb-4">
+                Architecture & Stack
+              </h4>
+              <ul className="space-y-2.5 text-xs text-zinc-400">
+                <li><Link href="/about" className="hover:text-white transition-colors">About AS CODEX</Link></li>
+                <li><Link href="/projects" className="hover:text-white transition-colors">All Case Studies</Link></li>
+                <li><Link href="/#services" className="hover:text-white transition-colors">Cloud & DevOps</Link></li>
+                <li><Link href="/#services" className="hover:text-white transition-colors">Enterprise Software</Link></li>
+                <li><Link href="/#services" className="hover:text-white transition-colors">UI/UX & Product Design</Link></li>
+                <li><Link href="/#services" className="hover:text-white transition-colors">AI & Automation</Link></li>
+                <li><Link href="/#skills" className="hover:text-white transition-colors">Technologies</Link></li>
+                <li><Link href="/#experience" className="hover:text-white transition-colors">Milestones</Link></li>
+              </ul>
+            </div>
+
+            {/* Contact Details */}
+            <div>
+              <h4 className="text-xs font-bold uppercase tracking-widest text-[#A78BFA] mb-4">
+                Direct Communication
+              </h4>
+              <ul className="space-y-2.5 text-xs text-zinc-400">
+                <li>
+                  <a href="mailto:contact@ascodex.com" className="hover:text-white transition-colors flex items-center gap-1.5">
+                    <Mail size={13} className="text-[#A78BFA] shrink-0" />
+                    <span className="break-all">contact@ascodex.com</span>
+                  </a>
+                </li>
+                <li>
+                  <span className="text-zinc-500 text-xs">Global Delivery • Remote & On-Premise</span>
+                </li>
+                <li className="pt-2">
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-[#7040F5] hover:bg-[#5b2fe0] px-4 py-2 rounded-full transition-colors active:scale-95"
+                  >
+                    <span>Request Discovery Call</span>
+                    <ArrowUpRight size={13} />
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
           </div>
 
-          {/* Social Gravity Grid */}
-          <div className="grid grid-cols-2 gap-8 md:gap-12 pb-10">
-            <SocialLink name="Linkedin" href="#" icon={<Linkedin size={20}/>} />
-            <SocialLink name="Dribbble" href="#" icon={<Instagram size={20}/>} />
-            <SocialLink name="Twitter" href="#" icon={<Twitter size={20}/>} />
-            <SocialLink name="Github" href="#" icon={<Github size={20}/>} />
+          {/* Bottom Bar: Copyright & Compliance */}
+          <div className="pt-8 sm:pt-10 mt-10 sm:mt-14 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500 text-center sm:text-left">
+            <p className="tracking-widest uppercase text-[10px] sm:text-[11px] font-mono text-zinc-400">
+              © {new Date().getFullYear()} AS CODEX. ALL RIGHTS RESERVED.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-zinc-400">
+              <Link href="/privacy" className="hover:text-white transition-colors">Privacy Framework</Link>
+              <Link href="/security" className="hover:text-white transition-colors">Security Standards</Link>
+              <Link href="/terms" className="hover:text-white transition-colors">Compliance & Terms</Link>
+            </div>
           </div>
+
         </div>
-      </div>
 
-      {/* 3. THE BOTTOM BAR - CLEAN & BOLD */}
-      <div className="relative z-10 border-t border-white/5 py-12 px-6 md:px-20">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-          
-          <div className="flex items-center gap-4">
-             <div className="w-12 h-12 bg-zinc-900 rounded-2xl flex items-center justify-center font-black text-xl">S.</div>
-             <p className="text-[10px] font-black uppercase tracking-widest text-zinc-500 max-w-[180px]">
-               UI/UX Designer & Creative Developer
-             </p>
-          </div>
-
-          <div className="flex flex-col items-center gap-2">
-             <div className="flex items-center gap-2 text-xs font-bold text-zinc-400 uppercase tracking-widest">
-               Handcrafted with <Heart size={12} className="text-red-500 fill-red-500" /> by Samia
-             </div>
-             <p className="text-[10px] text-zinc-600">© 2026 ALL RIGHTS RESERVED</p>
-          </div>
-
-          <div className="flex gap-10 text-[10px] font-black uppercase tracking-widest text-zinc-400">
-             <span className="hover:text-white transition-colors">Local Time (PKT)</span>
-             <a href="/about" className="hover:text-white transition-colors">About</a>
-          </div>
-
+        {/* GIGANTIC FULL-WIDTH WATERMARK (MATCHING AJ.DEV REFERENCE EXACTLY) */}
+        <div className="w-full pt-6 sm:pt-8 md:pt-10 pb-0 mb-[-1.5vw] sm:mb-[-2vw] md:mb-[-2.5vw] flex items-end justify-center overflow-hidden select-none pointer-events-none relative z-0">
+          <span
+            className="font-['Bricolage_Grotesque',sans-serif] font-black text-[16.5vw] sm:text-[18vw] md:text-[19.5vw] lg:text-[20.5vw] tracking-tighter leading-[0.78] bg-gradient-to-b from-[#2b2b32] to-[#111114] bg-clip-text text-transparent uppercase whitespace-nowrap block text-center select-none"
+          >
+            AS CODEX
+          </span>
         </div>
-      </div>
-    </footer>
-  );
-};
-
-// --- MAGNETIC SOCIAL LINK COMPONENT ---
-const SocialLink = ({ name, href, icon }: any) => {
-  return (
-    <motion.a
-      href={href}
-      aria-label={`Follow Samia on ${name}`}
-      rel="noopener noreferrer"
-      target="_blank"
-      whileHover={{ y: -10 }}
-      className="group flex flex-col gap-4 p-8 border border-white/5 rounded-3xl hover:bg-zinc-900/50 hover:border-white/20 transition-all duration-500"
-    >
-      <div className="w-12 h-12 rounded-full bg-zinc-900 flex items-center justify-center text-zinc-400 group-hover:text-white group-hover:scale-110 transition-all">
-        {icon}
-      </div>
-      <div>
-        <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1">{name}</p>
-        <p className="text-sm font-bold text-white group-hover:translate-x-1 transition-transform">Follow Me</p>
-      </div>
-    </motion.a>
+      </footer>
+    </div>
   );
 };
 

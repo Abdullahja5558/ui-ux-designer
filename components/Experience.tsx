@@ -1,131 +1,156 @@
 "use client";
 
-import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, MoveRight } from "lucide-react";
+import React from "react";
+import { motion } from "framer-motion";
+import { CheckCircle2, Building2, Calendar } from "lucide-react";
 
-const experiences = [
+const milestones = [
   {
-    year: "2024",
-    role: "SR. PRODUCT DESIGNER",
-    company: "TECH-VORTEX",
-    location: "REMOTE • LONDON",
-    details: "Led the design system for a fintech unicorn, increasing user retention by 25%."
+    period: "2024 — PRESENT",
+    role: "Enterprise Cloud & Microservices",
+    organization: "Global FinTech Architecture",
+    metrics: "+45% System Throughput",
+    description:
+      "Spearheaded serverless migration and Kubernetes cluster orchestration for a multi-tenant financial platform processing $50M+ in daily transaction volume with 99.999% uptime.",
+    highlights: ["Multi-Region AWS Cluster", "Zero Downtime Deployments", "SOC2 Compliance"],
   },
   {
-    year: "2022",
-    role: "UI/UX SPECIALIST",
-    company: "DIGITAL PULSE",
-    location: "DUBAI • UAE",
-    details: "Crafted immersive mobile experiences for 15+ high-growth startups globally."
+    period: "2022 — 2024",
+    role: "AI & Full-Stack Platform Engineering",
+    organization: "Enterprise SaaS Ecosystems",
+    metrics: "2.4M Active Requests / Day",
+    description:
+      "Designed and delivered a modern Next.js 15 enterprise suite with custom LLM agent integrations, reducing automated customer query resolution time from hours to seconds.",
+    highlights: ["Autonomous AI Pipelines", "GraphQL Federation", "Vector Search Engines"],
   },
   {
-    year: "2020",
-    role: "VISUAL DESIGNER",
-    company: "CREATIVE HUB",
-    location: "FAISALABAD • PK",
-    details: "Started the journey by defining brand identities for emerging retail brands."
-  }
+    period: "2020 — 2022",
+    role: "Distributed Systems & API Architecture",
+    organization: "Scale-Up Infrastructure Hub",
+    metrics: "15+ Production Apps Delivered",
+    description:
+      "Architected secure, high-concurrency REST & WebSocket APIs for high-growth startups across North America, the UK, and UAE with automated CI/CD releases.",
+    highlights: ["PostgreSQL Sharding", "Redis Distributed Caching", "Docker Pipelines"],
+  },
 ];
 
 const Experience = () => {
-  const targetRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-  });
-
-  // Section moves horizontally
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
-
   return (
-    <section ref={targetRef} className="relative h-[400vh] bg-white border-t-4 border-black"
-    id="experience">
-      <div className="sticky top-0 h-screen flex items-center overflow-hidden">
+    <section id="experience" className="py-16 sm:py-24 bg-[#FAF9FF] flex flex-col items-center px-4 sm:px-6 md:px-12 relative overflow-hidden">
+      <div className="max-w-6xl w-full">
         
-        {/* Giant Background Text */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-[0.02] select-none pointer-events-none">
-          <h2 className="text-[45vw] font-black text-black uppercase">PATH</h2>
+        {/* CENTERED SECTION HEADING */}
+        <div className="mb-14 sm:mb-20 text-center max-w-3xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="font-['Bricolage_Grotesque',sans-serif] text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[#111116] leading-[1.2]"
+          >
+            Proven Delivery &{" "}
+            <span className="inline-block bg-[#7040F5] text-white px-4 sm:px-6 py-0.5 sm:py-1 rounded-xl sm:rounded-2xl shadow-lg shadow-[#7040F5]/25">
+              Track Record
+            </span>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="mt-3.5 text-sm sm:text-base md:text-lg text-[#626477] font-normal leading-relaxed"
+          >
+            A consistent history of delivering enterprise-grade software, distributed systems, and mission-critical cloud infrastructure.
+          </motion.p>
         </div>
 
-        <motion.div style={{ x }} className="flex items-center">
+        {/* MODERN ARCHITECTURAL TIMELINE */}
+        <div className="relative">
           
-          {/* 1. Header Section - Added more width for space */}
-          <div className="min-w-[50vw] md:min-w-[45vw] px-10 md:px-24 flex flex-col justify-center gap-10">
-            <div className="space-y-4">
-              <span className="text-[12px] font-black uppercase tracking-[0.8em] text-black">Timeline</span>
-              <h2 className="text-8xl md:text-[11vw] font-black tracking-tighter text-black leading-[0.85]">
-                WORK <br /> <span className="italic font-outline text-black opacity-10 uppercase">History</span>
-              </h2>
-            </div>
-            
-            <div className="flex items-center gap-8 mt-12 border-t-2 border-black/5 pt-10">
-                <p className="text-black font-black text-sm uppercase tracking-widest">Scroll to Navigate</p>
-                <motion.div 
-                    animate={{ x: [0, 30, 0] }} 
-                    transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+          {/* Vertical Glowing Connector Line (Desktop Center, Mobile Left) */}
+          <div className="absolute top-8 bottom-8 left-4 md:left-1/2 md:-translate-x-1/2 w-0.5 bg-gradient-to-b from-[#7040F5] via-[#A78BFA] to-[#EDE9FF]" />
+
+          <div className="space-y-12 sm:space-y-16">
+            {milestones.map((item, index) => {
+              const isEven = index % 2 === 0;
+              return (
+                <motion.div
+                  key={item.role}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.15, duration: 0.5 }}
+                  className={`relative flex flex-col md:flex-row items-start md:items-center gap-8 ${
+                    isEven ? "md:flex-row" : "md:flex-row-reverse"
+                  }`}
                 >
-                    <MoveRight size={48} strokeWidth={1.5} />
+                  {/* Glowing Node Marker */}
+                  <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-white border-4 border-[#7040F5] shadow-md flex items-center justify-center z-10">
+                    <span className="w-2 h-2 rounded-full bg-[#7040F5] animate-pulse" />
+                  </div>
+
+                  {/* Card Content */}
+                  <div className="w-full md:w-[calc(50%-40px)] pl-12 md:pl-0">
+                    <div className="bg-white/95 backdrop-blur-md border border-[#EDE9FF] hover:border-[#7040F5]/40 rounded-3xl p-6 sm:p-8 shadow-[0_8px_30px_rgba(112,64,245,0.04)] hover:shadow-[0_16px_40px_rgba(112,64,245,0.1)] transition-all duration-300 group">
+                      
+                      {/* Top Header: Period & Organization */}
+                      <div className="flex items-center justify-between gap-2 mb-3">
+                        <span className="text-xs font-mono font-bold tracking-wider text-[#7040F5] flex items-center gap-1.5">
+                          <Calendar size={13} className="text-[#7040F5]" />
+                          {item.period}
+                        </span>
+                        <span className="text-xs text-[#626477] font-semibold flex items-center gap-1.5">
+                          <Building2 size={13} className="text-[#A78BFA]" />
+                          {item.organization}
+                        </span>
+                      </div>
+
+                      {/* Main Role Title */}
+                      <h3 className="text-xl sm:text-2xl font-bold text-[#111116] group-hover:text-[#7040F5] transition-colors mb-3">
+                        {item.role}
+                      </h3>
+
+                      {/* Key Result Strip (Purple Background, Clean Text, No Icon) */}
+                      <div className="mb-4 px-4 py-3 rounded-2xl bg-[#7040F5] text-white flex items-center justify-between shadow-sm shadow-[#7040F5]/20">
+                        <span className="text-xs font-semibold text-white/90">
+                          Key Result:
+                        </span>
+                        <span className="text-xs sm:text-sm font-bold text-white tracking-wide">
+                          {item.metrics}
+                        </span>
+                      </div>
+
+                      {/* Description */}
+                      <p className="text-sm text-[#626477] leading-relaxed mb-5 font-normal">
+                        {item.description}
+                      </p>
+
+                      {/* Deliverables Checklist (Clean, structured bullets) */}
+                      <div className="space-y-2 pt-4 border-t border-[#F0EDFF]">
+                        {item.highlights.map((h) => (
+                          <div
+                            key={h}
+                            className="flex items-center gap-2 text-xs font-medium text-[#373844]"
+                          >
+                            <CheckCircle2 size={13} className="text-[#7040F5] shrink-0" />
+                            <span>{h}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                    </div>
+                  </div>
+
+                  {/* Spacer for other half */}
+                  <div className="hidden md:block md:w-[calc(50%-40px)]" />
+
                 </motion.div>
-            </div>
+              );
+            })}
           </div>
 
-          {/* --- BIG SPACE BETWEEN HEADING AND CARDS --- */}
-          <div className="min-w-[15vw] md:min-w-[20vw]" /> 
+        </div>
 
-          {/* 2. Experience Cards Loop */}
-          <div className="flex gap-32 md:gap-48 pr-[20vw]">
-            {experiences.map((exp, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ y: -30, scale: 1.02 }}
-                className="relative min-w-[380px] md:min-w-[550px] h-[650px] bg-black rounded-[80px] p-16 flex flex-col justify-between group cursor-pointer shadow-[0_60px_120px_-20px_rgba(0,0,0,0.4)] border-[10px] border-black overflow-hidden"
-              >
-                {/* Year Watermark */}
-                <span className="absolute -top-10 -right-5 text-[18vw] font-black text-white/5 select-none transition-all group-hover:text-white/10 group-hover:rotate-12 group-hover:scale-110 duration-700">
-                  {exp.year}
-                </span>
-
-                <div className="z-10 flex flex-col gap-6">
-                  <div className="flex items-center gap-4 text-white/40 font-black text-[11px] tracking-[0.4em] uppercase">
-                     <div className="w-12 h-[2px] bg-white/40" />
-                     <span>{exp.location}</span>
-                  </div>
-                  <h3 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-none group-hover:italic transition-all duration-500">
-                      {exp.role}
-                  </h3>
-                  <p className="text-white text-2xl font-bold italic tracking-tight opacity-50">
-                      @ {exp.company}
-                  </p>
-                </div>
-
-                <div className="z-10">
-                  <p className="text-white/70 font-medium text-xl leading-[1.6] mb-12 max-w-[380px]">
-                      {exp.details}
-                  </p>
-                  <div className="w-20 h-20 rounded-full bg-white text-black flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-2xl">
-                      <ArrowRight size={36} />
-                  </div>
-                </div>
-
-                {/* Vertical Sidebar Text Inside Card */}
-                <div className="absolute bottom-16 right-12">
-                    <span className="text-[10px] font-black text-white/10 uppercase tracking-[0.6em] vertical-text">
-                        Archive No. 0{index + 1}
-                    </span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-          
-          {/* 3. Closing Chapter Space */}
-          <div className="min-w-[50vw] px-24">
-            <h2 className="text-[9vw] font-black text-black tracking-tighter leading-none uppercase">
-                
-This is just<br /> the beginning
-            </h2>
-          </div>
-
-        </motion.div>
       </div>
     </section>
   );

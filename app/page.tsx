@@ -17,8 +17,8 @@ const page = () => {
         <Hero />
         <Services />
         <Skills />
-        <Experience />
         <Projects />
+        <Experience />
         <Testimonials />
         <Contact />
       </main>

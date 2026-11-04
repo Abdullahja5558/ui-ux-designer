@@ -1,33 +1,34 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Samia | Senior UI/UX Designer & Creative Frontend Developer",
+  title: "About AS CODEX | Enterprise Architecture & Digital Innovation",
   description:
-    "Learn about Samia's design philosophy, human-centered methodologies, design systems, and frontend engineering background. Crafting impactful interfaces and scalable web products.",
+    "Discover AS CODEX — an elite digital engineering collective architecting scalable cloud platforms, enterprise microservices, intuitive UI/UX design, and AI automation for visionary enterprises worldwide.",
   alternates: {
-    canonical: "https://samia-uiux.vercel.app/about",
+    canonical: "https://ascodex.com/about",
   },
   openGraph: {
-    title: "About Samia | Senior UI/UX Designer & Creative Frontend Developer",
+    title: "About AS CODEX | Enterprise Architecture & Digital Innovation",
     description:
-      "Learn about Samia's design journey, human-centered UX design approach, and frontend development capabilities.",
-    url: "https://samia-uiux.vercel.app/about",
-    siteName: "Samia Portfolio",
-    type: "profile",
+      "Discover our philosophy where architectural rigor meets creative design fluidity. 99.99% cloud uptime, senior staff engineering, and 100% client code ownership.",
+    url: "https://ascodex.com/about",
+    siteName: "AS CODEX",
+    type: "website",
     images: [
       {
-        url: "/og-image.png",
+        url: "/navbar-2.png",
         width: 1200,
         height: 630,
-        alt: "About Samia - UI/UX Designer & Developer",
+        alt: "About AS CODEX — Enterprise IT Solutions",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Samia | UI/UX Designer & Developer",
+    title: "About AS CODEX | Enterprise Architecture & Digital Innovation",
     description:
-      "Explore Samia's journey, design systems, and frontend development expertise.",
+      "Discover AS CODEX engineering philosophy, cloud architectures, and bespoke software solutions.",
+    images: ["/navbar-2.png"],
   },
 };
 

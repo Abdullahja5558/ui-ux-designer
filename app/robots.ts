@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
+  const baseUrl = "https://ascodex.com";
+
   return {
     rules: [
       {
@@ -16,8 +18,12 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: "Bingbot",
         allow: "/",
       },
+      {
+        userAgent: "Applebot",
+        allow: "/",
+      },
     ],
-    sitemap: "https://samia-uiux.vercel.app/sitemap.xml",
-    host: "https://samia-uiux.vercel.app",
+    sitemap: `${baseUrl}/sitemap.xml`,
+    host: baseUrl,
   };
 }

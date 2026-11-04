@@ -1,8 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useMotionValueEvent, AnimatePresence, type Variants } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -10,115 +12,136 @@ const Navbar = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const { scrollY } = useScroll();
 
-  // Scroll detection for morphing
+  // Scroll detection with smooth trigger
   useMotionValueEvent(scrollY, "change", (latest) => {
-    setIsScrolled(latest > 50);
+    setIsScrolled(latest > 25);
   });
 
   const navLinks = [
-    { name: "Work", href: "/#work" },
-    { name: "About", href: "/about" },
-    { name: "Experience", href: "/#experience" },
+    { name: "Services", href: "/#services" },
+    { name: "Tech Stack", href: "/#skills" },
+    { name: "IT Solutions", href: "/#projects" },
+    { name: "Track Record", href: "/#experience" },
     { name: "Contact", href: "/#contact" },
   ];
 
-  // Variants for Mobile Menu Animations
-  const menuVariants = {
-    closed: { opacity: 0, scale: 0.95, y: -20 },
-    open: { 
-      opacity: 1, 
-      scale: 1, 
+  const menuVariants: Variants = {
+    closed: { opacity: 0, scale: 0.95, y: -16 },
+    open: {
+      opacity: 1,
+      scale: 1,
       y: 0,
-      transition: { staggerChildren: 0.1, delayChildren: 0.2 } 
-    }
+      transition: { staggerChildren: 0.07, delayChildren: 0.1 },
+    },
   };
 
-  const itemVariants = {
-    closed: { opacity: 0, y: 20 },
-    open: { opacity: 1, y: 0 }
+  const itemVariants: Variants = {
+    closed: { opacity: 0, y: 10 },
+    open: { opacity: 1, y: 0 },
   };
 
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 z-[100] flex justify-center items-center p-4 md:p-8 pointer-events-none">
+      <motion.header
+        initial={{ y: -24, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        className="fixed top-0 left-0 right-0 z-[100] flex justify-center items-center px-4 sm:px-8 md:px-12 pt-2 sm:pt-3 pointer-events-none"
+      >
         <motion.nav
           layout
-          transition={{ type: "spring", stiffness: 150, damping: 20 }}
+          transition={{ type: "spring", stiffness: 220, damping: 28 }}
           className={`
-            pointer-events-auto relative flex items-center justify-between transition-all duration-500
-            ${isScrolled || isOpen
-              ? "w-full max-w-[700px] px-3 py-2.5 rounded-[32px] border border-white/20 shadow-2xl bg-white/60 backdrop-blur-2xl" 
-              : "w-full max-w-[1200px] px-6 py-6 rounded-none border-transparent bg-transparent"
+            pointer-events-auto relative flex items-center justify-between transition-all duration-300 w-full max-w-7xl px-5 sm:px-8
+            ${isScrolled
+              ? "py-2.5 rounded-full bg-[#FAF9FF]/85 backdrop-blur-2xl border border-[#EDE9FF] shadow-[0_8px_30px_rgba(112,64,245,0.08)]"
+              : "py-3 bg-transparent border-0 border-transparent shadow-none"
             }
           `}
         >
-          {/* Noise Texture Background */}
-          {(isScrolled || isOpen) && (
-            <div className="absolute inset-0 -z-10 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')] rounded-[32px]" />
-          )}
-
-          {/* LOGO */}
-          <Link href="/" aria-label="Samia - UI/UX Designer & Developer Home" className="z-50 px-3 flex items-center gap-2 group">
-            <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center transition-transform group-hover:rotate-[360deg] duration-1000">
-              <div className="w-2.5 h-2.5 bg-white rounded-sm" />
-            </div>
-            <div className="flex flex-col leading-none text-black">
-              <span className="text-[12px] font-black tracking-tighter uppercase">SAMIA</span>
-              <span className="text-[8px] font-bold opacity-40 tracking-[0.2em]">STUDIO</span>
-            </div>
+          {/* LOGO: navbar-2.png */}
+          <Link
+            href="/"
+            aria-label="AS CODEX Home"
+            className="flex items-center group z-10 shrink-0"
+          >
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ duration: 0.2 }}
+              className="flex items-center"
+            >
+              <Image
+                src="/navbar-2.png"
+                alt="AS CODEX"
+                width={160}
+                height={54}
+                priority
+                className="h-8 sm:h-[34px] md:h-9 lg:h-10 w-auto object-contain transition-all duration-200"
+              />
+            </motion.div>
           </Link>
 
-          {/* DESKTOP NAV */}
-          <div className="hidden md:flex items-center gap-1 bg-black/5 p-1 rounded-full">
+          {/* DESKTOP NAV LINKS (SMOOTH HOVER ANIMATION) */}
+          <div className="hidden md:flex items-center gap-7 lg:gap-9">
             {navLinks.map((link, index) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="relative px-5 py-2 text-[10px] font-bold uppercase tracking-widest text-black/50 hover:text-black transition-colors"
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
+                className="text-xs font-semibold uppercase tracking-wider text-[#626477] hover:text-[#111116] transition-colors relative py-1"
               >
-                <span className="relative z-10">{link.name}</span>
+                <span>{link.name}</span>
                 {hoveredIndex === index && (
-                  <motion.div
-                    layoutId="nav-pill-desktop"
-                    transition={{ type: "spring", bounce: 0.3, duration: 0.6 }}
-                    className="absolute inset-0 bg-white shadow-sm rounded-full"
+                  <motion.span
+                    layoutId="navbar-hover-underline"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    className="absolute -bottom-0.5 left-0 right-0 h-[2px] bg-[#7040F5] rounded-full"
                   />
                 )}
               </Link>
             ))}
           </div>
 
-          {/* RIGHT SIDE: CTA (Scroll to Contact) + MOBILE TOGGLE */}
-          <div className="flex items-center gap-2">
-            <Link 
-              href="/#contact"
-              className={`hidden sm:block px-6 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition-all text-center
-                ${isScrolled ? "bg-black text-white hover:bg-zinc-800" : "bg-white text-black border border-black/10 hover:bg-black hover:text-white"}`}
-            >
-              Let's Talk
-            </Link>
+          {/* RIGHT CTA + MOBILE TOGGLE */}
+          <div className="flex items-center gap-2.5">
+            <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+              <Link
+                href="/#contact"
+                className="group hidden sm:inline-flex items-center justify-center gap-1.5 px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#111116] text-white hover:bg-[#7040F5] transition-all duration-300 shadow-sm"
+              >
+                <span>Let's Talk</span>
+                <ArrowUpRight size={13} className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+            </motion.div>
 
-            {/* Premium Hamburger Icon */}
-            <button 
+            {/* Mobile Hamburger Button */}
+            <button
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle navigation menu"
               aria-expanded={isOpen}
-              className="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 z-50 rounded-full bg-black/5 active:scale-90 transition-transform"
+              className="md:hidden w-8 h-8 flex flex-col items-center justify-center gap-1.5 rounded-full active:scale-95 transition-transform"
             >
-              <motion.span 
-                animate={isOpen ? { rotate: 45, y: 4 } : { rotate: 0, y: 0 }}
-                className="w-5 h-[2px] bg-black rounded-full" 
+              <motion.span
+                animate={isOpen ? { rotate: 45, y: 5 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.2 }}
+                className="w-4 h-[2px] bg-[#111116] rounded-full"
               />
-              <motion.span 
-                animate={isOpen ? { rotate: -45, y: -4 } : { rotate: 0, y: 0 }}
-                className="w-5 h-[2px] bg-black rounded-full" 
+              <motion.span
+                animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
+                transition={{ duration: 0.15 }}
+                className="w-4 h-[2px] bg-[#111116] rounded-full"
+              />
+              <motion.span
+                animate={isOpen ? { rotate: -45, y: -5 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.2 }}
+                className="w-4 h-[2px] bg-[#111116] rounded-full"
               />
             </button>
           </div>
 
-          {/* MOBILE MENU DROPDOWN */}
+          {/* MOBILE DROPDOWN */}
           <AnimatePresence>
             {isOpen && (
               <motion.div
@@ -126,43 +149,43 @@ const Navbar = () => {
                 initial="closed"
                 animate="open"
                 exit="closed"
-                className="absolute top-[calc(100%+12px)] left-0 right-0 bg-white/90 backdrop-blur-3xl border border-white/20 rounded-[32px] p-4 shadow-2xl overflow-hidden flex flex-col gap-2 md:hidden origin-top text-black"
+                className="absolute top-[calc(100%+10px)] left-0 right-0 bg-[#FAF9FF]/95 backdrop-blur-2xl border border-[#EDE9FF] rounded-3xl p-5 shadow-[0_16px_36px_rgba(112,64,245,0.08)] flex flex-col gap-2 md:hidden origin-top"
               >
                 {navLinks.map((link) => (
                   <motion.div key={link.name} variants={itemVariants}>
-                    <Link 
+                    <Link
                       href={link.href}
                       onClick={() => setIsOpen(false)}
-                      className="block w-full p-4 rounded-2xl bg-black/5 hover:bg-black hover:text-white text-center text-[12px] font-bold uppercase tracking-[0.3em] transition-all"
+                      className="block w-full py-3 px-4 rounded-xl text-center text-xs font-bold uppercase tracking-wider text-[#111116] hover:bg-[#EDE9FF] transition-colors"
                     >
                       {link.name}
                     </Link>
                   </motion.div>
                 ))}
-                <motion.div variants={itemVariants}>
+                <motion.div variants={itemVariants} className="pt-2">
                   <Link
                     href="/#contact"
                     onClick={() => setIsOpen(false)}
-                    className="mt-4 block w-full py-5 bg-black text-white text-center rounded-2xl text-[10px] font-black uppercase tracking-widest"
+                    className="block w-full py-3 text-center rounded-xl text-xs font-bold uppercase tracking-wider bg-[#7040F5] text-white hover:bg-[#5e2ee6] transition-colors"
                   >
-                    Hire Me Now
+                    Start a Project
                   </Link>
                 </motion.div>
               </motion.div>
             )}
           </AnimatePresence>
         </motion.nav>
-      </div>
+      </motion.header>
 
-      {/* Overlay background when menu is open */}
+      {/* Overlay Backdrop for Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsOpen(false)}
-            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[90] md:hidden"
+            className="fixed inset-0 bg-[#111116]/20 backdrop-blur-sm z-[90] md:hidden"
           />
         )}
       </AnimatePresence>

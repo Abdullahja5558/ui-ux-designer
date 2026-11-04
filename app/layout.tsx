@@ -1,74 +1,50 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const viewport: Viewport = {
-  themeColor: "#000000",
+  themeColor: "#7040F5",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
 };
 
-const siteUrl = "https://samia-uiux.vercel.app";
+const siteUrl = "https://ascodex.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
 
   title: {
-    default: "Samia | Professional UI/UX Designer & Creative Frontend Developer",
-    template: "%s | Samia - UI/UX Designer & Developer",
+    default: "AS CODEX | Enterprise IT Solutions, Cloud Architecture & Custom Software",
+    template: "%s | AS CODEX — Enterprise Solutions",
   },
 
   description:
-    "Portfolio of Samia — Senior UI/UX Designer & Creative Frontend Developer. Crafting high-converting digital products, modern web interfaces, design systems, and responsive web applications with Figma, Next.js, and React.",
+    "AS CODEX architects scalable cloud platforms, enterprise microservices, intuitive UI/UX design systems, and intelligent AI automation for visionary enterprises worldwide.",
 
-  applicationName: "Samia Portfolio",
+  applicationName: "AS CODEX",
 
   keywords: [
-    // UI/UX Keywords
-    "UI UX Designer",
-    "Senior UI/UX Designer",
-    "Product Designer",
-    "User Experience Designer",
-    "User Interface Designer",
-    "Figma Designer",
-    "Design Systems Specialist",
-    "Interaction Designer",
-    "Prototyping Expert",
-    "Mobile App Designer",
-    "Web Designer Portfolio",
-    "Samia UIUX",
-    // Developer Keywords
-    "Frontend Developer",
-    "Creative Developer",
-    "Web Developer",
-    "Next.js Developer",
-    "React Developer",
-    "Full-Stack UI Developer",
-    "TypeScript Developer",
-    "Tailwind CSS Specialist",
-    // High-Intent & Commercial Keywords
-    "Hire UI/UX Designer",
-    "Freelance UI UX Designer",
-    "Hire Frontend Developer",
-    "Remote UI Designer",
-    "Portfolio Website",
-    "Best UI UX Portfolios",
+    "Enterprise IT Solutions",
+    "Custom Software Development Company",
+    "Cloud Architecture & Scalability",
+    "DevOps & Kubernetes Automation",
+    "Next.js Full Stack Development",
+    "Microservices Architecture Consulting",
+    "UI/UX Design Agency",
+    "Product Design & Prototyping",
+    "Intelligent AI & Automation Pipelines",
+    "Zero-Trust Cybersecurity Systems",
+    "SaaS Product Engineering",
+    "AWS Azure GCP Cloud Migration",
+    "Distributed Backend Systems",
+    "High Concurrency Web Platforms",
+    "Hire Dedicated Senior Engineers",
+    "AS CODEX",
   ],
 
-  authors: [{ name: "Samia", url: siteUrl }],
-  creator: "Samia",
-  publisher: "Samia",
+  authors: [{ name: "AS CODEX", url: siteUrl }],
+  creator: "AS CODEX",
+  publisher: "AS CODEX",
 
   alternates: {
     canonical: siteUrl,
@@ -77,7 +53,6 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-    nocache: false,
     googleBot: {
       index: true,
       follow: true,
@@ -89,108 +64,133 @@ export const metadata: Metadata = {
 
   icons: {
     icon: [
+      { url: "/ascodex-favicon.png", sizes: "512x512", type: "image/png" },
       { url: "/favicon.ico" },
       { url: "/icon.png", sizes: "192x192", type: "image/png" },
     ],
-    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+    apple: [{ url: "/ascodex-favicon.png", sizes: "180x180", type: "image/png" }],
   },
 
   manifest: "/manifest.webmanifest",
 
   openGraph: {
-    title: "Samia | Senior UI/UX Designer & Frontend Developer",
+    title: "AS CODEX | Enterprise IT Solutions, Cloud Architecture & Custom Software",
     description:
-      "Crafting human-centered digital experiences, robust design systems, and modern web applications with Figma, React, and Next.js.",
+      "Architecting scalable cloud platforms, enterprise microservices, intuitive UI/UX design, and AI automation for visionary enterprises.",
     url: siteUrl,
-    siteName: "Samia - UI/UX & Development Portfolio",
+    siteName: "AS CODEX",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "/og-image.png",
+        url: "/navbar-2.png",
         width: 1200,
         height: 630,
-        alt: "Samia - UI/UX Designer & Frontend Developer Portfolio",
+        alt: "AS CODEX — Enterprise IT Solutions & Cloud Architecture",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Samia | UI/UX Designer & Frontend Developer",
+    title: "AS CODEX | Enterprise IT Solutions & Cloud Architecture",
     description:
-      "Senior UI/UX Designer & Creative Frontend Developer. Crafting pixel-perfect, high-converting digital interfaces and modern web applications.",
-    images: ["/og-image.png"],
-    creator: "@samia_uiux",
-  },
-
-  verification: {
-    google: "googlefc24be5cd256c9a9",
+      "Architecting scalable cloud platforms, enterprise microservices, and bespoke software solutions built for exponential business growth.",
+    images: ["/navbar-2.png"],
   },
 
   category: "technology",
 };
 
+// JSON-LD High-Ranking Structured Data
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Person",
-      "@id": `${siteUrl}/#person`,
-      name: "Samia",
-      alternateName: ["Samia UI/UX", "Samia Designer", "Samia Developer"],
+      "@type": ["Organization", "ProfessionalService"],
+      "@id": `${siteUrl}/#organization`,
+      name: "AS CODEX",
       url: siteUrl,
-      jobTitle: ["Senior UI/UX Designer", "Frontend Developer", "Product Designer"],
+      logo: `${siteUrl}/navbar-2.png`,
       description:
-        "Samia is a professional UI/UX Designer and Frontend Developer specializing in human-centered design, Figma design systems, Next.js, React, and high-impact digital experiences.",
-      knowsAbout: [
-        "UI/UX Design",
-        "Product Design",
-        "User Interface Design",
-        "User Experience Design",
-        "Frontend Development",
-        "Web Development",
-        "Next.js",
-        "React",
-        "Figma",
-        "Design Systems",
-        "Prototyping",
-        "User Research",
-        "Tailwind CSS",
-        "Interaction Design",
+        "Architecting scalable cloud platforms, enterprise microservices, bespoke software solutions, UI/UX design, and AI automation for visionary enterprises.",
+      email: "contact@ascodex.com",
+      areaServed: "Worldwide",
+      sameAs: [
+        "https://github.com/ascodex",
+        "https://linkedin.com/company/ascodex",
+        "https://twitter.com/ascodex",
       ],
+      knowsAbout: [
+        "Cloud Infrastructure & Scalability",
+        "Kubernetes & Docker DevOps Automation",
+        "Custom Software Engineering",
+        "Next.js Enterprise Development",
+        "Microservices Architecture",
+        "UI/UX & Product Design",
+        "Intelligent AI & Automation Pipelines",
+        "Zero-Trust Cybersecurity & Cryptographic Systems",
+      ],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "AS CODEX IT Solutions & Software Engineering",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Cloud Infrastructure & DevOps",
+              description:
+                "Enterprise AWS, Azure, and Google Cloud environments built with Kubernetes, Docker, and CI/CD automation for 99.99% uptime.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Custom Enterprise Software & Microservices",
+              description:
+                "High-throughput web applications, microservices, and distributed backend architectures engineered for high concurrency.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "UI/UX Design & Prototyping",
+              description:
+                "Human-centered design systems, responsive web & mobile interfaces, and high-fidelity Figma prototypes engineered for conversion.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Intelligent AI & Automation",
+              description:
+                "End-to-end integration of LLMs, proprietary AI agents, computer vision, and machine learning pipelines that automate operations.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Cybersecurity & Data Systems",
+              description:
+                "Hardened application security, automated compliance auditing, role-based access control, and zero-trust cryptographic data storage.",
+            },
+          },
+        ],
+      },
     },
     {
       "@type": "WebSite",
       "@id": `${siteUrl}/#website`,
       url: siteUrl,
-      name: "Samia | UI/UX Designer & Frontend Developer Portfolio",
-      description:
-        "Official portfolio of Samia — UI/UX Designer and Creative Frontend Developer crafting high-converting interfaces and modern web experiences.",
+      name: "AS CODEX",
       publisher: {
-        "@id": `${siteUrl}/#person`,
+        "@id": `${siteUrl}/#organization`,
       },
-      inLanguage: "en-US",
-    },
-    {
-      "@type": "ProfessionalService",
-      "@id": `${siteUrl}/#service`,
-      name: "Samia - UI/UX Design & Frontend Development Services",
-      url: siteUrl,
-      description:
-        "Professional UI/UX design, mobile & web application interfaces, design systems, and frontend web development services.",
-      priceRange: "$$",
-      provider: {
-        "@id": `${siteUrl}/#person`,
-      },
-      areaServed: "Worldwide",
-      serviceType: [
-        "UI/UX Design",
-        "Frontend Web Development",
-        "Mobile App UI/UX Design",
-        "Design Systems Architecture",
-        "Web Design & Prototyping",
-      ],
     },
   ],
 };
@@ -207,14 +207,31 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,89.6,200..800&family=Caveat:wght@400..700&display=swap"
+          rel="stylesheet"
+        />
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,89.6,200..800&family=Caveat:wght@400..700&display=swap');
+              html, body, *, *::before, *::after {
+                font-family: 'Bricolage Grotesque', sans-serif !important;
+              }
+              .font-script, .font-script * {
+                font-family: 'Caveat', cursive !important;
+              }
+            `,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className="antialiased">
         {children}
       </body>
     </html>

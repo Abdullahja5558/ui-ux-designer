@@ -2,15 +2,25 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Samia | UI/UX Designer & Creative Frontend Developer",
-    short_name: "Samia Portfolio",
+    name: "AS CODEX | Enterprise IT Solutions & Cloud Architecture",
+    short_name: "AS CODEX",
     description:
-      "Official portfolio of Samia — UI/UX Designer and Creative Frontend Developer crafting high-converting interfaces and modern digital experiences.",
+      "Architecting scalable cloud platforms, enterprise microservices, bespoke software solutions, UI/UX design, and AI automation for visionary enterprises.",
     start_url: "/",
     display: "standalone",
-    background_color: "#ffffff",
-    theme_color: "#000000",
+    background_color: "#FAF9FF",
+    theme_color: "#7040F5",
     icons: [
+      {
+        src: "/ascodex-favicon.png",
+        sizes: "512x512",
+        type: "image/png",
+      },
+      {
+        src: "/icon.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
       {
         src: "/favicon.ico",
         sizes: "any",

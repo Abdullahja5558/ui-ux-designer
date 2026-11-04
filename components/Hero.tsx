@@ -1,145 +1,100 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { Sparkles, Fingerprint } from "lucide-react";
-import Lenis from "lenis";
-import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
+import { ArrowRight, Play } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 const Hero = () => {
-  const containerRef = useRef(null);
-  const router = useRouter();
-
-  // 1. Lenis Smooth Scroll Setup
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    });
-
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-    return () => lenis.destroy();
-  }, []);
-
-  // Scroll tracking logic
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 80,
-    damping: 25,
-  });
-
-  // Ribbon Animations
-  const xTopRibbon = useTransform(smoothProgress, [0, 0.5, 1], ["80%", "0%", "-80%"]);
-  const yTopRibbon = useTransform(smoothProgress, [0, 0.5, 1], ["-60%", "0%", "60%"]);
-
-  const xBottomRibbon = useTransform(smoothProgress, [0, 0.5, 1], ["-80%", "0%", "80%"]);
-  const yBottomRibbon = useTransform(smoothProgress, [0, 0.5, 1], ["60%", "0%", "-60%"]);
-
-  const crossOpacity = useTransform(smoothProgress, [0, 0.05, 0.95, 1], [0, 1, 1, 0]);
-  const crossScale = useTransform(smoothProgress, [0, 0.5, 1], [0.9, 1.1, 0.9]);
-
-  // Click handler function
-  const handleExploreClick = () => {
-    const workSection = document.getElementById("work-section");
-    if (workSection) {
-      workSection.scrollIntoView({ behavior: "smooth" });
-    } else {
-      router.push("/#work"); 
-    }
-  };
-
   return (
-    <section
-      ref={containerRef}
-      className="relative min-h-[150vh] w-full flex flex-col items-center justify-start overflow-hidden bg-[#fafafa] pt-[20vh]"
-    >
-      {/* --- CROSSING RIBBONS LAYER --- */}
-      <div className="fixed inset-0 pointer-events-none z-10 flex items-center justify-center overflow-hidden">
-        
-        {/* Top-Right to Bottom-Left Ribbon */}
-        <motion.div
-          style={{
-            x: xTopRibbon,
-            y: yTopRibbon,
-            opacity: crossOpacity,
-            scale: crossScale,
-            rotate: "-12deg",
-          }}
-          className="absolute w-[250%] bg-black py-10 md:py-14 shadow-2xl flex items-center whitespace-nowrap"
-        >
-          {Array(10).fill("UI/UX DESIGNER").map((text, i) => (
-            <span key={i} className="text-[6vw] font-black uppercase text-yellow-400 mx-10 flex items-center">
-              {text} <span className="ml-10 opacity-20 text-white">•</span>
-            </span>
-          ))}
-        </motion.div>
+    <section className="relative w-full min-h-[100dvh] sm:min-h-screen max-h-[1050px] px-4 sm:px-6 flex flex-col items-center justify-start pt-45 sm:pt-20 md:pt-24 overflow-hidden bg-[#FAF9FF]">
 
-        {/* Bottom-Left to Top-Right Ribbon */}
-        <motion.div
-          style={{
-            x: xBottomRibbon,
-            y: yBottomRibbon,
-            opacity: crossOpacity,
-            scale: crossScale,
-            rotate: "12deg",
-          }}
-          className="absolute w-[250%] bg-white border-y border-black/10 py-10 md:py-14 shadow-2xl flex items-center whitespace-nowrap"
-        >
-          {Array(10).fill("SAMIA INTERFACES").map((text, i) => (
-            <span key={i} className="text-[6vw] font-black uppercase text-black mx-10 flex items-center">
-              {text} <span className="ml-10 opacity-20">•</span>
-            </span>
-          ))}
-        </motion.div>
+      {/* --- 1A. MOBILE DEDICATED PORTRAIT HERO BACKGROUND --- */}
+      <div className="block sm:hidden absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <Image
+          src="/hero-bg-mobile.jpg"
+          alt="AS CODEX Digital Platform Mobile"
+          fill
+          priority
+          className="w-full h-full object-cover object-top"
+          sizes="100vw"
+        />
       </div>
 
-      {/* --- MAIN CONTENT --- */}
-      <div className="relative z-20 text-center px-6 max-w-6xl">
-        
+      {/* --- 1B. DESKTOP LANDSCAPE HERO BACKGROUND (100% ORIGINAL QUALITY) --- */}
+      <div className="hidden sm:block absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <Image
+          src="/hero-bg-1.png"
+          alt="AS CODEX Digital Platform"
+          fill
+          priority
+          className="w-full h-full object-cover object-bottom"
+          sizes="100vw"
+        />
+      </div>
 
-        <motion.h1 className="text-[13vw] md:text-[9vw] font-black tracking-tighter leading-[0.85] text-black mb-12 select-none">
-          SAMIA<br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-b from-black/80 to-black/20">
-            .UI/UX & DEVELOPER
+      {/* --- 2. MAIN HERO CONTENT (SHIFTED UP, NO BADGE, PURPLE BG SPAN) --- */}
+      <div className="relative z-10 w-full max-w-4xl mx-auto text-center flex flex-col items-center">
+
+        {/* Luxury Serif Heading (Strictly 2 Lines, Powerful Solutions with Purple Background) */}
+        <motion.h1
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="font-['Bricolage_Grotesque',sans-serif] text-[1.65rem] sm:text-4xl md:text-5xl lg:text-[3.8rem] font-bold tracking-tight text-[#111116] leading-[1.2] select-none text-center"
+        >
+          <span className="block">Turn Your Ideas</span>
+          <span className="block mt-1 sm:mt-2">
+            Into{" "}
+            <span className="inline-block bg-[#7040F5] text-white px-3 sm:px-5 md:px-6 py-0.5 sm:py-1 rounded-xl sm:rounded-2xl shadow-lg shadow-[#7040F5]/25">
+              Powerful Solutions
+            </span>
           </span>
-          <span className="sr-only"> - UI/UX Designer & Creative Frontend Developer Portfolio</span>
         </motion.h1>
 
-        {/* --- GLASSMORPHISM BOX --- */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="flex flex-col md:flex-row items-center justify-between gap-10 p-8 md:p-12 rounded-[3rem] bg-white/30 backdrop-blur-xl border border-white/40 shadow-[0_20px_50px_rgba(0,0,0,0.05)]"
+        {/* Subtitle (Crisp & Compact) */}
+        <motion.p
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
+          className="mt-3 sm:mt-4 max-w-lg text-xs sm:text-sm md:text-base text-[#626477] font-medium leading-relaxed px-2"
         >
-          <p className="max-w-[320px] text-left text-sm text-gray-500 leading-relaxed border-l-2 border-black/10 pl-6 italic">
-            Focusing on <span className="text-black font-bold">Human-Centered Design</span> to create products that people love.
-          </p>
+          We craft modern web applications, scalable platforms and digital experiences that help you grow.
+        </motion.p>
 
-          <div className="flex items-center gap-6">
-            <button 
-              onClick={handleExploreClick}
-              className="px-10 py-5 bg-black text-white rounded-full text-[11px] font-bold uppercase tracking-[0.2em] shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer"
-            >
-              Explore Projects
-            </button>
-            
-            {/* Glassy Fingerprint Icon */}
-            <div className="w-16 h-16 bg-white/40 backdrop-blur-lg border border-white/60 rounded-full flex items-center justify-center cursor-pointer hover:bg-white hover:scale-110 transition-all shadow-sm group">
-              <Fingerprint size={28} strokeWidth={1.5} className="group-hover:text-yellow-600 transition-colors text-black/70" />
+        {/* Action Buttons (Elevated & Refined) */}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
+          className="mt-4 sm:mt-5 flex flex-wrap items-center justify-center gap-2.5 sm:gap-4"
+        >
+          {/* Primary CTA */}
+          <Link
+            href="/#contact"
+            className="group inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 rounded-full bg-[#111116] text-white text-xs sm:text-sm font-semibold tracking-wide hover:bg-[#7040F5] transition-all duration-300 shadow-[0_4px_16px_rgba(17,17,22,0.15)] active:scale-95"
+          >
+            <span>Start a Project</span>
+            <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-1" />
+          </Link>
+
+          {/* Secondary CTA */}
+          <Link
+            href="/#work"
+            className="group inline-flex items-center gap-2 px-4.5 sm:px-5 py-2.5 rounded-full text-[#111116] hover:text-[#7040F5] text-xs sm:text-sm font-semibold tracking-wide transition-all duration-200 bg-white/70 backdrop-blur-md border border-[#EDE9FF] hover:bg-[#EDE9FF]/70 active:scale-95 shadow-xs"
+          >
+            <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[#EDE9FF] flex items-center justify-center text-[#7040F5] transition-transform duration-200 group-hover:scale-110">
+              <Play size={9} fill="#7040F5" className="ml-0.5" />
             </div>
-          </div>
+            <span>Watch Our Work</span>
+          </Link>
         </motion.div>
+
       </div>
+
+      {/* --- 3. SOFT BOTTOM SHADOW / AMBIENT DISSOLVE (NO HARSH CUT) --- */}
+      <div className="absolute inset-x-0 bottom-0 h-28 sm:h-36 bg-gradient-to-t from-[#FAF9FF] via-[#FAF9FF]/70 to-transparent pointer-events-none z-10" />
+
     </section>
   );
 };

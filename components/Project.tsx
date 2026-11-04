@@ -2,229 +2,215 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Minus, Plus } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 interface Project {
   id: number;
   title: string;
   category: string;
+  type: string;
   year: string;
   link: string;
   image: string;
+  description: string;
+  tech: string[];
 }
 
-const allProjects: Project[] = [
+const projects: Project[] = [
   {
     id: 1,
-    title: "AJ Code",
-    category: "Developer Platform • Web App",
+    title: "AJ Code — Cloud Dev Platform",
+    category: "Cloud & SaaS",
+    type: "Developer Tooling • Web App",
     year: "2024",
     link: "https://aj-code.vercel.app",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800",
+    image: "/aj-code-p1.png",
+    description: "Cloud-native code workspace with live collaborative synchronization, WebAssembly sandbox, and automated CI deployment.",
+    tech: ["Next.js 15", "TypeScript", "Docker", "Tailwind CSS"],
   },
   {
     id: 2,
-    title: "Noor-ul-Quran",
-    category: "EdTech • Islamic Platform",
+    title: "PDFHubX — SaaS Document Engine",
+    category: "Cloud & SaaS",
+    type: "SaaS Utility • High-Performance Processing",
     year: "2024",
-    link: "https://noor-ulquran.vercel.app",
-    image: "https://images.unsplash.com/photo-1609599006353-e629aaabfeae?auto=format&fit=crop&q=80&w=800",
+    link: "https://pdfhubx.vercel.app",
+    image: "/pdf-p2.png",
+    description: "Enterprise PDF processing utility with client-side encryption, OCR text extraction, and batch transformation pipelines.",
+    tech: ["React 19", "WebAssembly", "Node.js", "Serverless"],
   },
   {
     id: 3,
-    title: "PDFHubX",
-    category: "SaaS Utility • Document Tool",
+    title: "Noor-ul-Quran — EdTech System",
+    category: "Web Platforms",
+    type: "Multi-Region Content Delivery Platform",
     year: "2024",
-    link: "https://pdfhubx.vercel.app",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
+    link: "https://noor-ulquran.vercel.app",
+    image: "/quran-p3.png",
+    description: "Global educational streaming platform serving audio, interactive recitation analytics, and structured learning modules.",
+    tech: ["Next.js", "PostgreSQL", "Cloudflare CDN", "Tailwind CSS"],
   },
   {
     id: 4,
-    title: "Bucceo Diving",
-    category: "Tourism • Booking Experience",
+    title: "Bucceo — Global Booking Engine",
+    category: "Web Platforms",
+    type: "Real-time Booking & Reservation Engine",
     year: "2024",
     link: "https://bucceo-diving.vercel.app",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    id: 5,
-    title: "California Poolmen Inc",
-    category: "UI/UX Showcase • Web Design",
-    year: "2023",
-    link: "https://samiafarooq97.wixsite.com/my-site-9",
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    id: 6,
-    title: "Cosy Hair Beauty",
-    category: "Product Design • Digital Experience",
-    year: "2023",
-    link: "https://samiafarooq97.wixsite.com/my-site-21",
-    image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=800",
+    image: "/diving-p4.png",
+    description: "Multi-currency tour booking engine with live calendar inventory, Stripe Connect payouts, and automated notifications.",
+    tech: ["React", "Node.js", "Stripe API", "MongoDB"],
   },
 ];
 
-const Projects = () => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [showAll, setShowAll] = useState(false);
+const categories = ["All", "Cloud & SaaS", "Web Platforms"];
 
-  // Logic to determine which projects to show
-  const visibleProjects = showAll ? allProjects : allProjects.slice(0, 3);
+const Projects = () => {
+  const [activeFilter, setActiveFilter] = useState("All");
+
+  const filteredProjects =
+    activeFilter === "All"
+      ? projects
+      : projects.filter((p) => p.category === activeFilter);
 
   return (
-    <section
-      className="relative py-40 bg-[#ffffff] w-full flex flex-col items-center overflow-hidden"
-      id="work"
-      aria-label="Featured Projects and Works"
-    >
-      {/* --- TOP ANIMATED WAVE --- */}
-      <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0] transform rotate-180 h-[100px]">
-        <motion.svg
-          animate={{ x: ["-25%", "0%", "-25%"] }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-          className="relative block w-[200%] h-full"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-            fill="#000000"
-          ></path>
-        </motion.svg>
-      </div>
+    <section id="projects" className="py-16 sm:py-24 bg-[#FAF9FF] flex flex-col items-center px-4 sm:px-6 md:px-12">
+      <div className="max-w-7xl w-full">
+        
+        {/* CENTERED SECTION HEADING (NO BADGE PILL, REDUCED SPACING) */}
+        <div className="mb-12 sm:mb-14 text-center max-w-3xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="font-['Bricolage_Grotesque',sans-serif] text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[#111116] leading-[1.2]"
+          >
+            Featured Case Studies &{" "}
+            <span className="inline-block bg-[#7040F5] text-white px-4 sm:px-6 py-0.5 sm:py-1 rounded-xl sm:rounded-2xl shadow-lg shadow-[#7040F5]/25">
+              IT Solutions
+            </span>
+          </motion.h2>
 
-      <div className="max-w-7xl w-full px-6 pt-20">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
-          <div className="space-y-4">
-            <h2 className="text-[12px] font-black uppercase tracking-[0.6em] text-black">
-              Selected Works
-            </h2>
-            <p className="text-6xl md:text-8xl font-black tracking-tighter text-black leading-none uppercase">
-              Featured <br />{" "}
-              <span className="text-black/20 italic font-serif">Projects</span>
-            </p>
-          </div>
-          <div className="hidden md:block text-right border-l-4 border-black pl-8">
-            <p className="text-lg font-bold text-black max-w-[250px] leading-tight italic">
-              "Creating digital products that define industries."
-            </p>
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="mt-3.5 text-sm sm:text-base md:text-lg text-[#626477] font-normal leading-relaxed"
+          >
+            Explore enterprise platforms, distributed cloud software, and production applications engineered for real-world impact.
+          </motion.p>
+
+          {/* FILTER BUTTONS */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveFilter(cat)}
+                className={`px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-200 cursor-pointer ${
+                  activeFilter === cat
+                    ? "bg-[#7040F5] text-white shadow-sm"
+                    : "bg-white text-[#626477] border border-[#EDE9FF] hover:border-[#7040F5] hover:text-[#111116]"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Project List */}
-        <div className="flex flex-col border-t-2 border-black">
-          <AnimatePresence mode="popLayout">
-            {visibleProjects.map((project, index) => (
-              <motion.a
+        {/* 2-COLUMN PROJECT GRID */}
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+          <AnimatePresence>
+            {filteredProjects.map((project) => (
+              <motion.div
                 key={project.id}
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
                 layout
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                aria-label={`Open project ${project.title} live preview`}
-                className="group relative flex items-center justify-between py-16 border-b border-black/10 cursor-pointer transition-all duration-500 hover:px-10 no-underline text-inherit"
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.35 }}
+                className="flex flex-col gap-4 sm:gap-5 w-full"
               >
-                <div className="z-10 flex flex-col md:flex-row md:items-center gap-6 md:gap-24">
-                  <span className="text-sm font-black text-black/30 tabular-nums">
-                    0{index + 1}
-                  </span>
-                  <h3 className="text-5xl md:text-8xl font-black tracking-tighter text-black transition-all duration-700 group-hover:italic group-hover:translate-x-6">
-                    {project.title}
-                  </h3>
+                {/* 1. PURE PROJECT IMAGE (NO BOX, NO BORDER, NO HOVER ANIMATION) */}
+                <div className="relative w-full aspect-[3/2] overflow-hidden rounded-2xl sm:rounded-3xl border-0 shadow-none">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    unoptimized
+                    priority={project.id <= 2}
+                    className="object-contain sm:object-cover w-full h-full select-none pointer-events-none"
+                    sizes="(max-width: 768px) 100vw, 800px"
+                  />
                 </div>
 
-                <div className="z-10 flex items-center gap-12">
-                  <div className="hidden lg:block text-right">
-                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-black mb-2">
-                      {project.category}
-                    </p>
-                    <p className="text-sm text-black font-black italic">
-                      {project.year}
-                    </p>
-                  </div>
-                  <div className="w-16 h-16 rounded-full border-2 border-black flex items-center justify-center group-hover:bg-black group-hover:text-white transition-all duration-500 shadow-xl">
-                    <ArrowUpRight size={32} strokeWidth={2.5} />
-                  </div>
-                </div>
+                {/* 2. DEDICATED CONTENT BOX (HAS BOX, BORDER, PADDING & SHADOW) */}
+                <div className="bg-white border border-[#EDE9FF] rounded-2xl sm:rounded-3xl p-5 sm:p-7 md:p-8 shadow-[0_4px_24px_rgba(112,64,245,0.04)] hover:border-[#7040F5]/40 hover:shadow-[0_12px_36px_rgba(112,64,245,0.08)] transition-all duration-300 flex flex-col justify-between flex-1">
+                  <div>
+                    {/* Title & Year */}
+                    <div className="flex items-start justify-between gap-3 mb-2.5">
+                      <h3 className="text-xl sm:text-2xl font-bold text-[#111116] hover:text-[#7040F5] transition-colors tracking-tight">
+                        {project.title}
+                      </h3>
+                      <span className="text-xs font-bold text-[#626477] bg-[#FAF9FF] border border-[#EDE9FF] px-2.5 py-1 rounded-lg shrink-0">
+                        {project.year}
+                      </span>
+                    </div>
 
-                {/* Floating Image Reveal */}
-                <AnimatePresence>
-                  {hoveredIndex === index && (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.8, x: 50, rotate: 10 }}
-                      animate={{ opacity: 1, scale: 1, x: 0, rotate: -5 }}
-                      exit={{ opacity: 0, scale: 0.8, x: 50, rotate: 10 }}
-                      className="absolute right-[25%] top-[-40%] w-[420px] h-[300px] pointer-events-none z-20 hidden lg:block"
+                    {/* Description */}
+                    <p className="text-xs sm:text-sm text-[#626477] font-normal leading-relaxed mb-5">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  <div>
+                    {/* Tech Stack Tags */}
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-4 border-t border-[#EDE9FF] mb-5">
+                      {project.tech.map((t) => (
+                        <span
+                          key={t}
+                          className="text-[10px] sm:text-[11px] font-medium text-[#111116] bg-[#FAF9FF] border border-[#EDE9FF] px-2.5 py-1 rounded-lg"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Action Button */}
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-xs font-bold text-white bg-[#111116] hover:bg-[#7040F5] px-5 py-2.5 rounded-full transition-all duration-300 shadow-sm hover:shadow-[#7040F5]/25 hover:shadow-md cursor-pointer"
                     >
-                      <img
-                        src={project.image}
-                        alt={`${project.title} - ${project.category} Portfolio Project by Samia UI/UX Designer`}
-                        loading="lazy"
-                        decoding="async"
-                        className="w-full h-full object-cover rounded-[50px] shadow-[0_50px_100px_rgba(0,0,0,0.5)] border-[8px] border-black"
-                      />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-                <div className="absolute inset-0 bg-[#f8f8f8] scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-bottom -z-10" />
-              </motion.a>
+                      <span>Launch Solution</span>
+                      <ArrowUpRight size={14} />
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
             ))}
           </AnimatePresence>
-        </div>
+        </motion.div>
 
-        {/* --- DYNAMIC TOGGLE BUTTON --- */}
-        <div className="mt-32 flex justify-center pb-10">
-          <motion.button
-            layout
-            onClick={() => setShowAll(!showAll)}
-            whileHover={{
-              scale: 1.05,
-              backgroundColor: "#000000",
-              color: "#ffffff",
-            }}
-            whileTap={{ scale: 0.95 }}
-            className="group flex items-center gap-6 px-14 py-7 border-2 border-black rounded-full text-black bg-transparent transition-all duration-500 shadow-lg hover:shadow-[0_20px_40px_rgba(0,0,0,0.2)] cursor-pointer"
+        {/* VIEW ALL PROJECTS / VIEW MORE BUTTON */}
+        <div className="mt-12 sm:mt-16 flex justify-center">
+          <Link
+            href="/projects"
+            className="group inline-flex items-center gap-3 px-8 py-3.5 sm:py-4 rounded-full bg-[#111116] text-white hover:bg-[#7040F5] transition-all duration-300 shadow-md hover:shadow-xl hover:shadow-[#7040F5]/25 active:scale-95 cursor-pointer"
           >
-            <span className="text-sm font-black uppercase tracking-[0.5em]">
-              {showAll ? "Show Less" : "View Archive"}
+            <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">
+              Explore All Projects & Case Studies
             </span>
-            <div className="w-6 h-6 flex items-center justify-center bg-black group-hover:bg-white rounded-full transition-colors">
-              {showAll ? (
-                <Minus
-                  size={14}
-                  className="text-white group-hover:text-black"
-                />
-              ) : (
-                <Plus
-                  size={14}
-                  className="text-white group-hover:text-black"
-                />
-              )}
+            <div className="w-7 h-7 rounded-full bg-white/10 group-hover:bg-white group-hover:text-[#7040F5] flex items-center justify-center transition-all">
+              <ArrowUpRight size={15} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </div>
-          </motion.button>
+          </Link>
         </div>
-      </div>
 
-      {/* --- BOTTOM ANIMATED WAVE --- */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] h-[120px]">
-        <motion.svg
-          animate={{ x: ["0%", "-25%", "0%"] }}
-          transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-          className="relative block w-[200%] h-full"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-            fill="#000000"
-          ></path>
-        </motion.svg>
       </div>
     </section>
   );
