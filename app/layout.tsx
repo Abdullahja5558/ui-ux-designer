@@ -9,38 +9,40 @@ export const viewport: Viewport = {
   maximumScale: 5,
 };
 
-const siteUrl = "https://ascodex.com";
+const siteUrl = "https://ascodex.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
 
   title: {
-    default: "AS CODEX | Enterprise IT Solutions, Cloud Architecture & Custom Software",
-    template: "%s | AS CODEX — Enterprise Solutions",
+    default: "AS CODEX | Custom Software Development, Cloud Architecture & UI/UX Agency",
+    template: "%s | AS CODEX — Enterprise Digital Solutions",
   },
 
   description:
-    "AS CODEX architects scalable cloud platforms, enterprise microservices, intuitive UI/UX design systems, and intelligent AI automation for visionary enterprises worldwide.",
+    "AS CODEX is a top-tier digital engineering agency building scalable custom software, high-concurrency microservices, cloud infrastructure (AWS/Azure/GCP), and human-centered UI/UX design systems for visionary founders, startups, and global enterprises.",
 
   applicationName: "AS CODEX",
 
   keywords: [
-    "Enterprise IT Solutions",
-    "Custom Software Development Company",
-    "Cloud Architecture & Scalability",
-    "DevOps & Kubernetes Automation",
-    "Next.js Full Stack Development",
-    "Microservices Architecture Consulting",
-    "UI/UX Design Agency",
-    "Product Design & Prototyping",
-    "Intelligent AI & Automation Pipelines",
+    // Top-tier commercial agency keywords
+    "Top Software Development Company",
+    "Hire Dedicated Senior Developers",
+    "Hire Full Stack Next.js Developers",
+    "Custom Enterprise Software Development",
+    "SaaS MVP Product Engineering",
+    "Full Stack Web & Mobile App Development",
+    "UI/UX Design Agency for Startups",
+    "Cloud Architecture & Scalability Consulting",
+    "AWS Azure GCP DevOps Kubernetes CI/CD",
+    "Microservices & Distributed Systems Engineering",
+    "AI Agent & Machine Learning Integration",
     "Zero-Trust Cybersecurity Systems",
-    "SaaS Product Engineering",
-    "AWS Azure GCP Cloud Migration",
-    "Distributed Backend Systems",
-    "High Concurrency Web Platforms",
-    "Hire Dedicated Senior Engineers",
+    "Nearshore & Offshore Dedicated Engineering Teams",
+    "High Concurrency Low Latency Platforms",
+    "FinTech HealthTech SaaS Software Solutions",
     "AS CODEX",
+    "AS CODEX Digital Engineering",
   ],
 
   authors: [{ name: "AS CODEX", url: siteUrl }],
@@ -49,6 +51,15 @@ export const metadata: Metadata = {
 
   alternates: {
     canonical: siteUrl,
+    languages: {
+      "en-US": `${siteUrl}/`,
+      "en-GB": `${siteUrl}/`,
+      "en-AE": `${siteUrl}/`,
+    },
+  },
+
+  verification: {
+    google: "googlefc24be5cd256c9a9",
   },
 
   robots: {
@@ -75,9 +86,9 @@ export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
 
   openGraph: {
-    title: "AS CODEX | Enterprise IT Solutions, Cloud Architecture & Custom Software",
+    title: "AS CODEX | Custom Software Development, Cloud Architecture & UI/UX Agency",
     description:
-      "Architecting scalable cloud platforms, enterprise microservices, intuitive UI/UX design, and AI automation for visionary enterprises.",
+      "Premier digital engineering agency architecting high-performance custom software, cloud microservices, and conversion-focused UI/UX design systems for visionary enterprises worldwide.",
     url: siteUrl,
     siteName: "AS CODEX",
     locale: "en_US",
@@ -87,14 +98,14 @@ export const metadata: Metadata = {
         url: "/navbar-2.png",
         width: 1200,
         height: 630,
-        alt: "AS CODEX — Enterprise IT Solutions & Cloud Architecture",
+        alt: "AS CODEX — Custom Enterprise Software Development & Cloud Architecture",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "AS CODEX | Enterprise IT Solutions & Cloud Architecture",
+    title: "AS CODEX | Custom Software Development & Cloud Architecture",
     description:
       "Architecting scalable cloud platforms, enterprise microservices, and bespoke software solutions built for exponential business growth.",
     images: ["/navbar-2.png"],
@@ -113,22 +124,49 @@ const jsonLd = {
       name: "AS CODEX",
       url: siteUrl,
       logo: `${siteUrl}/navbar-2.png`,
+      image: `${siteUrl}/navbar-2.png`,
       description:
-        "Architecting scalable cloud platforms, enterprise microservices, bespoke software solutions, UI/UX design, and AI automation for visionary enterprises.",
+        "Premier digital engineering agency architecting scalable custom software, cloud microservices, and conversion-focused UI/UX design systems for visionary enterprises worldwide.",
       email: "contact@ascodex.com",
+      telephone: "+92-371-5909509",
+      priceRange: "$$$",
       areaServed: "Worldwide",
       sameAs: [
         "https://github.com/ascodex",
         "https://linkedin.com/company/ascodex",
         "https://twitter.com/ascodex",
       ],
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          telephone: "+92-371-5909509",
+          contactType: "sales",
+          areaServed: "Worldwide",
+          availableLanguage: ["English", "Urdu"],
+        },
+        {
+          "@type": "ContactPoint",
+          telephone: "+92-326-6455353",
+          contactType: "technical support",
+          areaServed: "Worldwide",
+          availableLanguage: ["English", "Urdu"],
+        },
+      ],
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.9",
+        reviewCount: "68",
+        bestRating: "5",
+        worstRating: "1",
+      },
       knowsAbout: [
+        "Custom Software Engineering",
+        "Hire Dedicated Senior Developers",
         "Cloud Infrastructure & Scalability",
         "Kubernetes & Docker DevOps Automation",
-        "Custom Software Engineering",
         "Next.js Enterprise Development",
         "Microservices Architecture",
-        "UI/UX & Product Design",
+        "UI/UX & Product Design Systems",
         "Intelligent AI & Automation Pipelines",
         "Zero-Trust Cybersecurity & Cryptographic Systems",
       ],
@@ -192,6 +230,44 @@ const jsonLd = {
       publisher: {
         "@id": `${siteUrl}/#organization`,
       },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${siteUrl}/#faq`,
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "What custom software engineering services does AS CODEX provide?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "AS CODEX provides end-to-end custom software development, high-concurrency microservices, cloud DevOps (AWS/Azure/GCP), bespoke UI/UX design systems, Next.js web platforms, and intelligent AI automation pipelines.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "How quickly can AS CODEX start on a new digital project?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "We begin with a complimentary technical discovery call and can deploy dedicated senior engineers or sprint teams within 48 to 72 hours under strict NDA protection.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "What is AS CODEX's core technology stack?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Our primary stack includes Next.js, React, TypeScript, Node.js, Python, Golang, PostgreSQL, Redis, Docker, Kubernetes, AWS, and modern Figma design systems.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Does AS CODEX offer 24/7 dedicated support and SLA guarantees?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes, AS CODEX offers 24/7 telemetry monitoring, auto-scaling cluster support, and enterprise SLA-backed maintenance contracts.",
+          },
+        },
+      ],
     },
   ],
 };

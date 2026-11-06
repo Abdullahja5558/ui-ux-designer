@@ -51,6 +51,7 @@ const Hero = () => {
               Powerful Solutions
             </span>
           </span>
+          <span className="sr-only"> — Premier Custom Software Engineering, Cloud Architecture & UI/UX Design Agency</span>
         </motion.h1>
 
         {/* Subtitle (Crisp & Compact) */}
