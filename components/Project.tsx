@@ -32,17 +32,61 @@ const projects: Project[] = [
   },
   {
     id: 2,
-    title: "PDFHubX — SaaS Document Engine",
+    title: "PDFfilz — Private PDF Suite",
     category: "Cloud & SaaS",
-    type: "SaaS Utility • High-Performance Processing",
+    type: "Client-Side WebAssembly • SaaS Utility",
     year: "2024",
-    link: "https://pdfhubx.vercel.app",
-    image: "/pdf-p2.png",
-    description: "Enterprise PDF processing utility with client-side encryption, OCR text extraction, and batch transformation pipelines.",
-    tech: ["React 19", "WebAssembly", "Node.js", "Serverless"],
+    link: "https://pdffilz.com",
+    image: "/pdf-p7.png",
+    description: "100% private in-browser document suite. Fast and highly utilitarian tools to merge, compress, convert, edit, and sign documents with zero server uploads.",
+    tech: ["Next.js", "WebAssembly", "TypeScript", "Tailwind CSS"],
   },
   {
     id: 3,
+    title: "Corelytics IO — Business Intelligence",
+    category: "Cloud & SaaS",
+    type: "Enterprise Analytics • Big Data SaaS",
+    year: "2024",
+    link: "https://corelytics-io.vercel.app",
+    image: "/saas-p11.png",
+    description: "Empowering businesses by stripping away data noise and revealing the truth beneath. Helping global teams across 6 continents make smarter decisions.",
+    tech: ["Next.js", "Data Telemetry", "PostgreSQL", "Tailwind CSS"],
+  },
+  {
+    id: 4,
+    title: "Lex Pro AI — Legal Intelligence",
+    category: "AI & Automation",
+    type: "AI Legal Powerhouse • LegalTech",
+    year: "2024",
+    link: "https://lexpro-ai.vercel.app",
+    image: "/lex-p10.png",
+    description: "The Future of Justice. Elite legal AI platform translating complex statutory procedures and contract analysis into clear, actionable insights.",
+    tech: ["Next.js", "Legal AI Pipeline", "Tailwind CSS", "FastAPI"],
+  },
+  {
+    id: 5,
+    title: "M.Studio — Digital Sanctuary",
+    category: "Web Platforms",
+    type: "High-End Architecture • Creative Dev",
+    year: "2026",
+    link: "https://m-studio-sigma.vercel.app",
+    image: "/mss-p9.png",
+    description: "Beyond the Pixel Perfect. Digital sanctuary where architecture meets high-end development: reducing clutter until your vision can breathe.",
+    tech: ["Next.js 15", "Creative Engineering", "Tailwind CSS", "TypeScript"],
+  },
+  {
+    id: 6,
+    title: "GBCC — Engineering & Infrastructure",
+    category: "Web Platforms",
+    type: "Commercial Infrastructure & Civil Works",
+    year: "2024",
+    link: "https://gbcc.com.co",
+    image: "/gbcc-p8.png",
+    description: "Structure → Waterproofing → Maintenance → Finishing. Delivering complete structural works, advanced waterproofing, and high-quality finishing solutions.",
+    tech: ["Next.js", "Corporate Portal", "Tailwind CSS", "Framer Motion"],
+  },
+  {
+    id: 7,
     title: "Noor-ul-Quran — EdTech System",
     category: "Web Platforms",
     type: "Multi-Region Content Delivery Platform",
@@ -53,7 +97,7 @@ const projects: Project[] = [
     tech: ["Next.js", "PostgreSQL", "Cloudflare CDN", "Tailwind CSS"],
   },
   {
-    id: 4,
+    id: 8,
     title: "Bucceo — Global Booking Engine",
     category: "Web Platforms",
     type: "Real-time Booking & Reservation Engine",
@@ -65,7 +109,7 @@ const projects: Project[] = [
   },
 ];
 
-const categories = ["All", "Cloud & SaaS", "Web Platforms"];
+const categories = ["All", "Cloud & SaaS", "Web Platforms", "AI & Automation"];
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState("All");

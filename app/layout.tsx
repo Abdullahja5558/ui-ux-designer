@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import WhatsAppWidget from "@/components/WhatsAppWidget";
 
 export const viewport: Viewport = {
   themeColor: "#7040F5",
@@ -210,18 +211,18 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,89.6,200..800&family=Caveat:wght@400..700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,89.6,200..800&family=Caveat:wght@400..700&family=Dancing+Script:wght@500;700&display=swap"
           rel="stylesheet"
         />
         <style
           dangerouslySetInnerHTML={{
             __html: `
-              @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,89.6,200..800&family=Caveat:wght@400..700&display=swap');
+              @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,89.6,200..800&family=Caveat:wght@400..700&family=Dancing+Script:wght@500;700&display=swap');
               html, body, *, *::before, *::after {
                 font-family: 'Bricolage Grotesque', sans-serif !important;
               }
               .font-script, .font-script * {
-                font-family: 'Caveat', cursive !important;
+                font-family: 'Caveat', 'Dancing Script', 'Alex Brush', cursive !important;
               }
             `,
           }}
@@ -233,6 +234,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased">
         {children}
+        <WhatsAppWidget />
       </body>
     </html>
   );

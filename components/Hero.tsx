@@ -5,9 +5,10 @@ import { ArrowRight, Play } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+
 const Hero = () => {
   return (
-    <section className="relative w-full min-h-[100dvh] sm:min-h-screen max-h-[1050px] px-4 sm:px-6 flex flex-col items-center justify-start pt-45 sm:pt-20 md:pt-24 overflow-hidden bg-[#FAF9FF]">
+    <section className="relative w-full min-h-[100dvh] sm:min-h-screen max-h-[1050px] px-4 sm:px-6 flex flex-col items-center justify-start pt-28 sm:pt-20 md:pt-24 overflow-hidden bg-[#FAF9FF]">
 
       {/* --- 1A. MOBILE DEDICATED PORTRAIT HERO BACKGROUND --- */}
       <div className="block sm:hidden absolute inset-0 z-0 pointer-events-none overflow-hidden">

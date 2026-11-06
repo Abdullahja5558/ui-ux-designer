@@ -137,9 +137,89 @@ const caseStudies: CaseStudy[] = [
     image: "/sm-p7.png",
     tech: ["Next.js", "AI File Sorting", "TypeScript", "Tailwind CSS"],
   },
+  {
+    id: 8,
+    title: "PDFfilz.",
+    tagline: "100% Privately In Your Browser.",
+    quote:
+      "The smartest and most private way to work with PDFs. Fast, approachable, and highly utilitarian.",
+    description:
+      "Merge, compress, convert, edit, and sign your documents 100% privately in your browser. Built with client-side WebAssembly tools for merging, compressing, Word conversion, document signing, and batch PDF-to-JPG workflows with zero third-party server exposure.",
+    service: "Client-Side SaaS & PDF Engine",
+    sector: "Document Privacy & SaaS Utilities",
+    year: "2024",
+    category: "Cloud & SaaS",
+    link: "https://pdffilz.com",
+    image: "/pdf-p7.png",
+    tech: ["Next.js", "WebAssembly", "TypeScript", "Tailwind CSS"],
+  },
+  {
+    id: 9,
+    title: "GBCC Engineering.",
+    tagline: "Structure → Waterproofing → Maintenance → Finishing.",
+    quote:
+      "Delivering complete structural works, advanced waterproofing systems, and high-quality finishing solutions.",
+    description:
+      "Comprehensive civil engineering and commercial construction platform. Delivering end-to-end structural works, advanced waterproofing systems, and high-quality finishing solutions for commercial, residential, and industrial projects—from foundation to final handover.",
+    service: "Civil Engineering & Infrastructure",
+    sector: "Commercial Construction & Architecture",
+    year: "2024",
+    category: "Web Platforms",
+    link: "https://gbcc.com.co",
+    image: "/gbcc-p8.png",
+    tech: ["Next.js", "Corporate Portal", "Tailwind CSS", "Framer Motion"],
+  },
+  {
+    id: 10,
+    title: "M.Studio.",
+    tagline: "Beyond the Pixel Perfect.",
+    quote:
+      "Reduce until it's perfect. We eliminate the clutter so your vision can breathe.",
+    description:
+      "Founded by AJ Developer, M.Studio is a digital sanctuary where architecture meets high-end development. We don't just 'build' sites; we craft environments. Est. 2026, Pakistan Based. The Architecture of Code: every project is a monolith of design and performance.",
+    service: "Creative Architecture & Digital Sanctuary",
+    sector: "High-End Architecture & Digital Studio",
+    year: "2026",
+    category: "Web Platforms",
+    link: "https://m-studio-sigma.vercel.app",
+    image: "/mss-p9.png",
+    tech: ["Next.js 15", "Creative Engineering", "Tailwind CSS", "TypeScript"],
+  },
+  {
+    id: 11,
+    title: "Lex Pro AI.",
+    tagline: "The Future of Justice. ⚖️",
+    quote:
+      "An elite legal AI powerhouse designed to translate complex legal procedures into clear, actionable insights.",
+    description:
+      "Next-generation legal intelligence platform built for legal practitioners and corporate enterprises. Translates complex statutory legal procedures, contract reviews, and precedent discovery into clear, actionable, high-security analytical workflows.",
+    service: "Intelligent Legal AI Automation",
+    sector: "LegalTech & Artificial Intelligence",
+    year: "2024",
+    category: "AI & Automation",
+    link: "https://lexpro-ai.vercel.app",
+    image: "/lex-p10.png",
+    tech: ["Next.js", "Legal LLM Pipeline", "Tailwind CSS", "FastAPI"],
+  },
+  {
+    id: 12,
+    title: "Corelytics IO.",
+    tagline: "Empowering Businesses with Raw Data Truth.",
+    quote:
+      "To provide every entrepreneur with the same analytical power as Fortune 500 companies.",
+    description:
+      "Corelytics was founded with a single mission: to empower businesses by stripping away the noise of raw data and revealing the truth beneath. Built on radical transparency, speed of execution, and design excellence. Helping teams across 6 continents make smarter, data-driven decisions every single day.",
+    service: "Enterprise Data Analytics SaaS",
+    sector: "Business Intelligence & Big Data",
+    year: "2024",
+    category: "Cloud & SaaS",
+    link: "https://corelytics-io.vercel.app",
+    image: "/saas-p11.png",
+    tech: ["Next.js", "Data Telemetry", "PostgreSQL", "Tailwind CSS"],
+  },
 ];
 
-const categories = ["All", "Cloud & SaaS", "E-Commerce", "Web Platforms"];
+const categories = ["All", "Cloud & SaaS", "Web Platforms", "AI & Automation", "E-Commerce"];
 
 export default function ProjectsPage() {
   const [activeFilter, setActiveFilter] = useState("All");
