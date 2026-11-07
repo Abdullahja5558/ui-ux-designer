@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 // High-fidelity Tech Logos SVG Components
 const ReactIcon = ({ className }: { className?: string }) => (
@@ -85,36 +85,177 @@ const K8sIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-// Purple Ribbon Tech List
-const purpleRibbonTech = [
-  { name: "Next.js 16", Icon: NextIcon },
-  { name: "TypeScript", Icon: TSIcon },
-  { name: "React 19", Icon: ReactIcon },
-  { name: "AWS Cloud", Icon: AWSIcon },
-  { name: "Docker", Icon: DockerIcon },
-  { name: "PostgreSQL", Icon: PostgresIcon },
-  { name: "Tailwind CSS", Icon: TailwindIcon },
-  { name: "Python", Icon: PythonIcon },
-];
+// 5 SERVICES (SOFTWARE ENGINEERING RENAMED TO WEB DEVELOPMENT)
+export const servicesList = [
+  "Cloud & DevOps",
+  "Web Development",
+  "UI/UX & Product Design",
+  "AI & Automation",
+  "Cybersecurity & Data",
+] as const;
 
-// White Ribbon Tech List
-const whiteRibbonTech = [
-  { name: "Node.js", Icon: NodeIcon },
-  { name: "Kubernetes", Icon: K8sIcon },
-  { name: "MongoDB", Icon: MongoIcon },
-  { name: "Python AI", Icon: PythonIcon },
-  { name: "TypeScript", Icon: TSIcon },
-  { name: "React Native", Icon: ReactIcon },
-  { name: "Next.js", Icon: NextIcon },
-  { name: "AWS Infra", Icon: AWSIcon },
-];
+type ServiceType = (typeof servicesList)[number];
+
+const serviceTechMap: Record<
+  ServiceType,
+  {
+    purple: { name: string; Icon: React.ComponentType<{ className?: string }> }[];
+    white: { name: string; Icon: React.ComponentType<{ className?: string }> }[];
+  }
+> = {
+  "Cloud & DevOps": {
+    purple: [
+      { name: "AWS Cloud", Icon: AWSIcon },
+      { name: "Docker", Icon: DockerIcon },
+      { name: "Kubernetes", Icon: K8sIcon },
+      { name: "Terraform", Icon: AWSIcon },
+      { name: "CI/CD Actions", Icon: NodeIcon },
+      { name: "Google Cloud", Icon: AWSIcon },
+      { name: "Prometheus", Icon: DockerIcon },
+      { name: "Nginx Core", Icon: NodeIcon },
+    ],
+    white: [
+      { name: "Linux OS", Icon: NodeIcon },
+      { name: "Helm Charts", Icon: K8sIcon },
+      { name: "Grafana", Icon: DockerIcon },
+      { name: "Cloudflare", Icon: AWSIcon },
+      { name: "Datadog", Icon: DockerIcon },
+      { name: "Ansible", Icon: PythonIcon },
+      { name: "Serverless", Icon: AWSIcon },
+      { name: "Microservices", Icon: K8sIcon },
+    ],
+  },
+  "Web Development": {
+    purple: [
+      { name: "Next.js 16", Icon: NextIcon },
+      { name: "TypeScript", Icon: TSIcon },
+      { name: "React 19", Icon: ReactIcon },
+      { name: "Node.js", Icon: NodeIcon },
+      { name: "PostgreSQL", Icon: PostgresIcon },
+      { name: "GraphQL", Icon: TSIcon },
+      { name: "Tailwind CSS", Icon: TailwindIcon },
+      { name: "Redis Cache", Icon: MongoIcon },
+    ],
+    white: [
+      { name: "Python Core", Icon: PythonIcon },
+      { name: "GoLang", Icon: TSIcon },
+      { name: "REST APIs", Icon: NodeIcon },
+      { name: "MongoDB", Icon: MongoIcon },
+      { name: "Prisma ORM", Icon: NextIcon },
+      { name: "Apache Kafka", Icon: DockerIcon },
+      { name: "WebSockets", Icon: ReactIcon },
+      { name: "FastAPI", Icon: PythonIcon },
+    ],
+  },
+  "UI/UX & Product Design": {
+    purple: [
+      { name: "Figma Pro", Icon: ReactIcon },
+      { name: "Design Systems", Icon: TailwindIcon },
+      { name: "Wireframing", Icon: TSIcon },
+      { name: "Micro-Interactions", Icon: ReactIcon },
+      { name: "Framer Motion", Icon: NextIcon },
+      { name: "User Research", Icon: TSIcon },
+      { name: "UI Components", Icon: TailwindIcon },
+      { name: "Prototyping", Icon: ReactIcon },
+    ],
+    white: [
+      { name: "Responsive Layouts", Icon: TailwindIcon },
+      { name: "SVG Vectors", Icon: ReactIcon },
+      { name: "Typography", Icon: NextIcon },
+      { name: "WCAG Accessibility", Icon: TSIcon },
+      { name: "Interaction Design", Icon: ReactIcon },
+      { name: "Design Tokens", Icon: TailwindIcon },
+      { name: "Design Handoff", Icon: TSIcon },
+      { name: "Storybook", Icon: ReactIcon },
+    ],
+  },
+  "AI & Automation": {
+    purple: [
+      { name: "Python AI", Icon: PythonIcon },
+      { name: "LangChain", Icon: PythonIcon },
+      { name: "PyTorch", Icon: PythonIcon },
+      { name: "OpenAI API", Icon: NextIcon },
+      { name: "Anthropic Claude", Icon: TSIcon },
+      { name: "Vector Database", Icon: MongoIcon },
+      { name: "Hugging Face", Icon: PythonIcon },
+      { name: "Llama 3 Core", Icon: PythonIcon },
+    ],
+    white: [
+      { name: "Autonomous Agents", Icon: PythonIcon },
+      { name: "NLP Pipelines", Icon: PythonIcon },
+      { name: "FastAPI ML", Icon: PythonIcon },
+      { name: "ChromaDB", Icon: MongoIcon },
+      { name: "Model Fine-Tuning", Icon: PythonIcon },
+      { name: "TensorFlow", Icon: PythonIcon },
+      { name: "RAG Architecture", Icon: NextIcon },
+      { name: "AI Automation", Icon: TSIcon },
+    ],
+  },
+  "Cybersecurity & Data": {
+    purple: [
+      { name: "Zero Trust Arch", Icon: AWSIcon },
+      { name: "OAuth 2.0 / JWT", Icon: TSIcon },
+      { name: "AES-256 Encryption", Icon: PostgresIcon },
+      { name: "Cloudflare WAF", Icon: AWSIcon },
+      { name: "SOC 2 Security", Icon: DockerIcon },
+      { name: "Penetration Testing", Icon: NodeIcon },
+      { name: "Network Hardening", Icon: K8sIcon },
+      { name: "Role-Based RBAC", Icon: TSIcon },
+    ],
+    white: [
+      { name: "IAM Security", Icon: AWSIcon },
+      { name: "HashiCorp Vault", Icon: DockerIcon },
+      { name: "SSL / TLS 1.3", Icon: NextIcon },
+      { name: "Audit Logging", Icon: PostgresIcon },
+      { name: "PostgreSQL Hardening", Icon: PostgresIcon },
+      { name: "DDoS Mitigation", Icon: AWSIcon },
+      { name: "API Gateway Auth", Icon: NodeIcon },
+      { name: "Secret Management", Icon: DockerIcon },
+    ],
+  },
+};
 
 const Skills = () => {
+  // Default selected service
+  const [selectedService, setSelectedService] = useState<ServiceType>("Web Development");
+
+  // Draggable & Swipeable container state
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeftState, setScrollLeftState] = useState(0);
+  const [hasDragged, setHasDragged] = useState(false);
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!scrollContainerRef.current) return;
+    setIsDragging(true);
+    setHasDragged(false);
+    setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
+    setScrollLeftState(scrollContainerRef.current.scrollLeft);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !scrollContainerRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - scrollContainerRef.current.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    if (Math.abs(walk) > 4) {
+      setHasDragged(true);
+    }
+    scrollContainerRef.current.scrollLeft = scrollLeftState - walk;
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const currentStack = serviceTechMap[selectedService];
+
   return (
     <section id="skills" className="py-16 sm:py-24 bg-[#FAF9FF] overflow-hidden flex flex-col items-center relative">
       
-      {/* 1. CENTERED SECTION HEADING (NO BADGE PILL, REDUCED SPACING) */}
-      <div className="max-w-4xl w-full px-6 mb-12 sm:mb-16 text-center z-10">
+      {/* 1. CENTERED SECTION HEADING (NO SUB-PARAGRAPH) */}
+      <div className="max-w-4xl w-full px-6 mb-8 sm:mb-12 text-center z-10 flex flex-col items-center">
         <motion.h2
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -127,18 +268,56 @@ const Skills = () => {
           </span>
         </motion.h2>
 
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="mt-3.5 text-sm sm:text-base md:text-lg text-[#626477] font-normal max-w-xl mx-auto leading-relaxed"
-        >
-          Battle-tested frameworks, cloud infrastructure, and modern developer tooling leveraged to construct ultra-resilient IT architectures.
-        </motion.p>
+        {/* 2. DRAGGABLE & SWIPEABLE SINGLE HORIZONTAL LINE (2 & 3RD HALF SHOWN WITH SIDE FADE MASKS) */}
+        <div className="relative mt-8 w-full max-w-[340px] sm:max-w-[480px] md:max-w-[560px]">
+          
+          {/* Left Edge Shadow / Fade Mask */}
+          <div className="absolute left-0 inset-y-0 w-8 sm:w-12 bg-gradient-to-r from-[#FAF9FF] via-[#FAF9FF]/90 to-transparent pointer-events-none z-10" />
+
+          {/* Right Edge Shadow / Fade Mask */}
+          <div className="absolute right-0 inset-y-0 w-8 sm:w-12 bg-gradient-to-l from-[#FAF9FF] via-[#FAF9FF]/90 to-transparent pointer-events-none z-10" />
+
+          {/* Horizontal Scroll / Drag Track */}
+          <div
+            ref={scrollContainerRef}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
+            className={`flex items-center gap-3 overflow-x-auto no-scrollbar scroll-smooth px-6 py-2 select-none ${
+              isDragging ? "cursor-grabbing" : "cursor-grab"
+            }`}
+            style={{
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+            }}
+          >
+            {servicesList.map((service) => {
+              const isActive = selectedService === service;
+              return (
+                <button
+                  key={service}
+                  onClick={() => {
+                    if (!hasDragged) {
+                      setSelectedService(service);
+                    }
+                  }}
+                  className={`shrink-0 px-5 sm:px-6 py-2.5 rounded-full text-xs sm:text-sm font-bold tracking-wide transition-all duration-300 cursor-pointer select-none shadow-none ${
+                    isActive
+                      ? "bg-[#7040F5] text-white border border-[#7040F5]"
+                      : "bg-white text-[#626477] border border-[#EDE9FF] hover:border-[#7040F5]/50 hover:text-[#111116] hover:bg-[#FAF9FF]"
+                  }`}
+                >
+                  {service}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
       </div>
 
-      {/* 2. CROSSING "X" STREAMING RIBBONS LAYER */}
+      {/* 3. CROSSING "X" STREAMING RIBBONS LAYER */}
       <div className="relative w-full py-14 sm:py-20 flex items-center justify-center overflow-hidden min-h-[290px] sm:min-h-[360px] md:min-h-[400px]">
         
         {/* Soft Ambient Center Glow */}
@@ -148,56 +327,76 @@ const Skills = () => {
 
         {/* RIBBON 1: PURPLE COLOR (Tilted -10deg mobile, -8deg tablet, -6deg desktop for sharp X shape) */}
         <div className="absolute w-[280%] sm:w-[190%] md:w-[150%] -rotate-10 sm:-rotate-8 md:-rotate-6 z-20 shadow-2xl py-2 sm:py-3 md:py-4 bg-[#7040F5] border-y border-[#5b2fe0] overflow-hidden">
-          <motion.div
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
-            className="flex whitespace-nowrap gap-3 sm:gap-5 md:gap-7 items-center"
-          >
-            {[...purpleRibbonTech, ...purpleRibbonTech, ...purpleRibbonTech].map((tech, index) => {
-              const IconComp = tech.Icon;
-              return (
-                <div
-                  key={index}
-                  className="inline-flex items-center gap-2 sm:gap-2.5 px-3 py-1 sm:px-4 sm:py-2 md:px-5 md:py-2.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-white hover:bg-white hover:text-[#7040F5] transition-all duration-200 cursor-pointer shadow-sm group shrink-0"
-                >
-                  <div className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 rounded-full bg-white/20 group-hover:bg-transparent flex items-center justify-center p-0.5">
-                    <IconComp className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
-                  </div>
-                  <span className="text-[10px] sm:text-xs md:text-sm font-bold tracking-wide uppercase">
-                    {tech.name}
-                  </span>
-                  <span className="opacity-40 text-white text-[10px] sm:text-xs md:text-sm">•</span>
-                </div>
-              );
-            })}
-          </motion.div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={selectedService}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <motion.div
+                animate={{ x: ["0%", "-50%"] }}
+                transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+                className="flex whitespace-nowrap gap-3 sm:gap-5 md:gap-7 items-center"
+              >
+                {[...currentStack.purple, ...currentStack.purple, ...currentStack.purple].map((tech, index) => {
+                  const IconComp = tech.Icon;
+                  return (
+                    <div
+                      key={index}
+                      className="inline-flex items-center gap-2 sm:gap-2.5 px-3 py-1 sm:px-4 sm:py-2 md:px-5 md:py-2.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-white hover:bg-white hover:text-[#7040F5] transition-all duration-200 cursor-pointer shadow-sm group shrink-0"
+                    >
+                      <div className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 rounded-full bg-white/20 group-hover:bg-transparent flex items-center justify-center p-0.5">
+                        <IconComp className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+                      </div>
+                      <span className="text-[10px] sm:text-xs md:text-sm font-bold tracking-wide uppercase">
+                        {tech.name}
+                      </span>
+                      <span className="opacity-40 text-white text-[10px] sm:text-xs md:text-sm">•</span>
+                    </div>
+                  );
+                })}
+              </motion.div>
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         {/* RIBBON 2: WHITE COLOR (Tilted +10deg mobile, +8deg tablet, +6deg desktop for sharp X shape) */}
         <div className="absolute w-[280%] sm:w-[190%] md:w-[150%] rotate-10 sm:rotate-8 md:rotate-6 z-10 shadow-xl py-2 sm:py-3 md:py-4 bg-white border-y border-[#EDE9FF] overflow-hidden">
-          <motion.div
-            animate={{ x: ["-50%", "0%"] }}
-            transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
-            className="flex whitespace-nowrap gap-3 sm:gap-5 md:gap-7 items-center"
-          >
-            {[...whiteRibbonTech, ...whiteRibbonTech, ...whiteRibbonTech].map((tech, index) => {
-              const IconComp = tech.Icon;
-              return (
-                <div
-                  key={index}
-                  className="inline-flex items-center gap-2 sm:gap-2.5 px-3 py-1 sm:px-4 sm:py-2 md:px-5 md:py-2.5 rounded-full bg-[#FAF9FF] border border-[#EDE9FF] text-[#111116] hover:border-[#7040F5] hover:text-[#7040F5] transition-all duration-200 cursor-pointer shadow-xs group shrink-0"
-                >
-                  <div className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 flex items-center justify-center p-0.5">
-                    <IconComp className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
-                  </div>
-                  <span className="text-[10px] sm:text-xs md:text-sm font-bold tracking-wide uppercase text-[#111116] group-hover:text-[#7040F5]">
-                    {tech.name}
-                  </span>
-                  <span className="opacity-30 text-[#626477] text-[10px] sm:text-xs md:text-sm">•</span>
-                </div>
-              );
-            })}
-          </motion.div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={selectedService}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <motion.div
+                animate={{ x: ["-50%", "0%"] }}
+                transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+                className="flex whitespace-nowrap gap-3 sm:gap-5 md:gap-7 items-center"
+              >
+                {[...currentStack.white, ...currentStack.white, ...currentStack.white].map((tech, index) => {
+                  const IconComp = tech.Icon;
+                  return (
+                    <div
+                      key={index}
+                      className="inline-flex items-center gap-2 sm:gap-2.5 px-3 py-1 sm:px-4 sm:py-2 md:px-5 md:py-2.5 rounded-full bg-[#FAF9FF] border border-[#EDE9FF] text-[#111116] hover:border-[#7040F5] hover:text-[#7040F5] transition-all duration-200 cursor-pointer shadow-xs group shrink-0"
+                    >
+                      <div className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 flex items-center justify-center p-0.5">
+                        <IconComp className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+                      </div>
+                      <span className="text-[10px] sm:text-xs md:text-sm font-bold tracking-wide uppercase text-[#111116] group-hover:text-[#7040F5]">
+                        {tech.name}
+                      </span>
+                      <span className="opacity-30 text-[#626477] text-[10px] sm:text-xs md:text-sm">•</span>
+                    </div>
+                  );
+                })}
+              </motion.div>
+            </motion.div>
+          </AnimatePresence>
         </div>
 
       </div>

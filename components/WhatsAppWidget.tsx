@@ -61,6 +61,27 @@ export default function WhatsAppWidget() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Listen to open request from mobile navbar button
+  useEffect(() => {
+    const handleOpen = () => setIsOpen(true);
+    window.addEventListener("open-whatsapp-modal", handleOpen);
+    return () => window.removeEventListener("open-whatsapp-modal", handleOpen);
+  }, []);
+
+  // Lock background scroll when WhatsApp modal is open
+  useEffect(() => {
+    if (isOpen) {
+      const prevBodyOverflow = document.body.style.overflow;
+      const prevHtmlOverflow = document.documentElement.style.overflow;
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = prevBodyOverflow;
+        document.documentElement.style.overflow = prevHtmlOverflow;
+      };
+    }
+  }, [isOpen]);
+
   const openWhatsApp = (contact: WhatsAppContact) => {
     const encoded = encodeURIComponent(contact.message);
     const url = `https://wa.me/${contact.rawNumber}?text=${encoded}`;
@@ -68,111 +89,126 @@ export default function WhatsAppWidget() {
   };
 
   return (
-    <div
-      ref={widgetRef}
-      className="fixed bottom-5 right-5 sm:bottom-7 sm:right-7 z-[999] flex flex-col items-end select-none pointer-events-auto"
-    >
-      {/* POPUP CARD */}
+    <>
+      {/* MOBILE BACKDROP (Closes modal when tapping outside) */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.92, y: 16 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.92, y: 16 }}
-            transition={{ type: "spring", stiffness: 350, damping: 30 }}
-            className="mb-3.5 w-[92vw] sm:w-[370px] max-w-[390px] rounded-3xl bg-white border border-[#EDE9FF] shadow-[0_20px_50px_-15px_rgba(17,17,22,0.18)] overflow-hidden"
-          >
-            {/* Header (Clean, No dots, No blinking) */}
-            <div className="bg-[#111116] text-white p-5 relative">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-2xl bg-[#25D366] flex items-center justify-center text-white shadow-sm">
-                    <WhatsAppIcon className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-['Bricolage_Grotesque',sans-serif] font-bold text-sm tracking-tight text-white">
-                      AS CODEX Support
-                    </h3>
-                    <p className="text-[11px] text-zinc-300 font-medium">
-                      Typically replies within minutes
-                    </p>
-                  </div>
-                </div>
-
-                <button
-                  onClick={() => setIsOpen(false)}
-                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-zinc-300 hover:text-white flex items-center justify-center transition-colors active:scale-90"
-                  aria-label="Close WhatsApp chat modal"
-                >
-                  <X size={16} />
-                </button>
-              </div>
-
-              <p className="mt-3 text-xs text-zinc-300 leading-relaxed font-normal">
-                Hello! 👋 Welcome to <strong className="text-white">AS CODEX</strong>. Select a WhatsApp line below to connect directly with our team:
-              </p>
-            </div>
-
-            {/* Contacts List (Clean, No badge pills, No glowing) */}
-            <div className="p-4 space-y-2.5 bg-[#FAF9FF]/80">
-              {contacts.map((contact, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => openWhatsApp(contact)}
-                  className="group w-full text-left p-3.5 rounded-2xl bg-white border border-[#EDE9FF] hover:border-[#7040F5]/40 hover:bg-[#FAF9FF] shadow-xs hover:shadow-sm transition-all duration-200 flex items-center justify-between gap-3 active:scale-[0.98]"
-                >
-                  <div className="flex items-start gap-3">
-                    <div className="w-9 h-9 rounded-xl bg-[#25D366]/10 text-[#25D366] flex items-center justify-center shrink-0 group-hover:bg-[#25D366] group-hover:text-white transition-colors duration-200 mt-0.5">
-                      <WhatsAppIcon className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <span className="text-xs font-bold text-[#111116] group-hover:text-[#7040F5] transition-colors block">
-                        {contact.label}
-                      </span>
-                      <p className="text-[11px] text-[#626477] mt-0.5">
-                        {contact.role}
-                      </p>
-                      <p className="text-xs font-mono font-bold text-[#111116] mt-1 tracking-wide">
-                        {contact.number}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="w-7 h-7 rounded-full bg-[#FAF9FF] group-hover:bg-[#7040F5] text-[#626477] group-hover:text-white flex items-center justify-center shrink-0 transition-colors duration-200">
-                    <ArrowUpRight size={14} />
-                  </div>
-                </button>
-              ))}
-            </div>
-
-            {/* Footer Guarantee */}
-            <div className="px-5 py-2.5 bg-white border-t border-[#EDE9FF] flex items-center justify-between text-[10px] text-[#626477] font-mono">
-              <span className="flex items-center gap-1.5">
-                <ShieldCheck size={13} className="text-[#7040F5]" />
-                100% NDA & Privacy Protected
-              </span>
-              <span className="text-zinc-400">Direct Chat</span>
-            </div>
-          </motion.div>
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsOpen(false)}
+            className="fixed inset-0 bg-black/40 backdrop-blur-xs z-[998] md:hidden"
+          />
         )}
       </AnimatePresence>
 
-      {/* FLOATING TRIGGER BUTTON (SOLID, NO GLOW, NO BLINK / WAVE) */}
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label="Open WhatsApp direct chat"
-        className="relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#25D366] hover:bg-[#20ba5c] text-white shadow-md shadow-black/15 hover:shadow-lg transition-all duration-200"
+      <div
+        ref={widgetRef}
+        className="fixed inset-x-3 bottom-22 md:inset-auto md:bottom-7 md:right-7 z-[999] flex flex-col items-center md:items-end select-none pointer-events-auto"
       >
-        <div className="relative z-10 flex items-center justify-center">
-          {isOpen ? (
-            <X size={24} strokeWidth={2.2} />
-          ) : (
-            <WhatsAppIcon className="w-7 h-7 sm:w-8 sm:h-8" />
+        {/* POPUP CARD */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.92, y: 16 }}
+              transition={{ type: "spring", stiffness: 350, damping: 30 }}
+              className="mb-3.5 w-full sm:w-[370px] max-w-[390px] rounded-3xl bg-white border border-[#EDE9FF] shadow-[0_20px_50px_-15px_rgba(17,17,22,0.25)] overflow-hidden"
+            >
+              {/* Header (Clean, No dots, No blinking) */}
+              <div className="bg-[#111116] text-white p-5 relative">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-2xl bg-[#25D366] flex items-center justify-center text-white shadow-sm">
+                      <WhatsAppIcon className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-['Bricolage_Grotesque',sans-serif] font-bold text-sm tracking-tight text-white">
+                        AS CODEX Support
+                      </h3>
+                      <p className="text-[11px] text-zinc-300 font-medium">
+                        Typically replies within minutes
+                      </p>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-zinc-300 hover:text-white flex items-center justify-center transition-colors active:scale-90"
+                    aria-label="Close WhatsApp chat modal"
+                  >
+                    <X size={16} />
+                  </button>
+                </div>
+
+                <p className="mt-3 text-xs text-zinc-300 leading-relaxed font-normal">
+                  Hello! 👋 Welcome to <strong className="text-white">AS CODEX</strong>. Select a WhatsApp line below to connect directly with our team:
+                </p>
+              </div>
+
+              {/* Contacts List (Clean, No badge pills, No glowing) */}
+              <div className="p-4 space-y-2.5 bg-[#FAF9FF]/80">
+                {contacts.map((contact, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => openWhatsApp(contact)}
+                    className="group w-full text-left p-3.5 rounded-2xl bg-white border border-[#EDE9FF] hover:border-[#7040F5]/40 hover:bg-[#FAF9FF] shadow-xs hover:shadow-sm transition-all duration-200 flex items-center justify-between gap-3 active:scale-[0.98]"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="w-9 h-9 rounded-xl bg-[#25D366]/10 text-[#25D366] flex items-center justify-center shrink-0 group-hover:bg-[#25D366] group-hover:text-white transition-colors duration-200 mt-0.5">
+                        <WhatsAppIcon className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <span className="text-xs font-bold text-[#111116] group-hover:text-[#7040F5] transition-colors block">
+                          {contact.label}
+                        </span>
+                        <p className="text-[11px] text-[#626477] mt-0.5">
+                          {contact.role}
+                        </p>
+                        <p className="text-xs font-mono font-bold text-[#111116] mt-1 tracking-wide">
+                          {contact.number}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="w-7 h-7 rounded-full bg-[#FAF9FF] group-hover:bg-[#7040F5] text-[#626477] group-hover:text-white flex items-center justify-center shrink-0 transition-colors duration-200">
+                      <ArrowUpRight size={14} />
+                    </div>
+                  </button>
+                ))}
+              </div>
+
+              {/* Footer Guarantee */}
+              <div className="px-5 py-2.5 bg-white border-t border-[#EDE9FF] flex items-center justify-between text-[10px] text-[#626477] font-mono">
+                <span className="flex items-center gap-1.5">
+                  <ShieldCheck size={13} className="text-[#7040F5]" />
+                  100% NDA & Privacy Protected
+                </span>
+                <span className="text-zinc-400">Direct Chat</span>
+              </div>
+            </motion.div>
           )}
-        </div>
-      </motion.button>
-    </div>
+        </AnimatePresence>
+
+        {/* FLOATING TRIGGER BUTTON (SOLID, DESKTOP ONLY) */}
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Open WhatsApp direct chat"
+          className="hidden md:flex relative items-center justify-center w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#25D366] hover:bg-[#20ba5c] text-white shadow-md shadow-black/15 hover:shadow-lg transition-all duration-200"
+        >
+          <div className="relative z-10 flex items-center justify-center">
+            {isOpen ? (
+              <X size={24} strokeWidth={2.2} />
+            ) : (
+              <WhatsAppIcon className="w-7 h-7 sm:w-8 sm:h-8" />
+            )}
+          </div>
+        </motion.button>
+      </div>
+    </>
   );
 }

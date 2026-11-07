@@ -38,7 +38,7 @@ const caseStudies: CaseStudy[] = [
     year: "2024",
     category: "Cloud & SaaS",
     link: "https://aj-code.vercel.app",
-    image: "/aj-code-p1.png",
+    image: "/aj-code-p1.webp",
     tech: ["Next.js 15", "TypeScript", "Docker", "WebAssembly"],
   },
   {
@@ -54,7 +54,7 @@ const caseStudies: CaseStudy[] = [
     year: "2024",
     category: "Cloud & SaaS",
     link: "https://pdfhubx.vercel.app",
-    image: "/pdf-p2.png",
+    image: "/pdf-p2.webp",
     tech: ["React 19", "WebAssembly", "Node.js", "Serverless"],
   },
   {
@@ -70,7 +70,7 @@ const caseStudies: CaseStudy[] = [
     year: "2024",
     category: "Web Platforms",
     link: "https://noor-ulquran.vercel.app",
-    image: "/quran-p3.png",
+    image: "/quran-p3.webp",
     tech: ["Next.js", "PostgreSQL", "Cloudflare CDN", "Tailwind CSS"],
   },
   {
@@ -86,7 +86,7 @@ const caseStudies: CaseStudy[] = [
     year: "2024",
     category: "Web Platforms",
     link: "https://bucceo-diving.vercel.app",
-    image: "/diving-p4.png",
+    image: "/diving-p4.webp",
     tech: ["React", "Node.js", "Stripe Connect", "MongoDB"],
   },
   {
@@ -102,7 +102,7 @@ const caseStudies: CaseStudy[] = [
     year: "2024",
     category: "E-Commerce",
     link: "https://drylicious.vercel.app",
-    image: "/drylicious-p5.png",
+    image: "/drylicious-p5.webp",
     tech: ["Next.js", "Shopify Storefront", "Tailwind CSS", "Stripe API"],
   },
   {
@@ -118,7 +118,7 @@ const caseStudies: CaseStudy[] = [
     year: "2024",
     category: "Web Platforms",
     link: "https://orientstudy.tech",
-    image: "/os-p6.png",
+    image: "/os-p6.webp",
     tech: ["Next.js", "AI Roadmaps", "Tailwind CSS", "FastAPI"],
   },
   {
@@ -134,7 +134,7 @@ const caseStudies: CaseStudy[] = [
     year: "2024",
     category: "Cloud & SaaS",
     link: "https://sortmindai.vercel.app",
-    image: "/sm-p7.png",
+    image: "/sm-p7.webp",
     tech: ["Next.js", "AI File Sorting", "TypeScript", "Tailwind CSS"],
   },
   {
@@ -150,7 +150,7 @@ const caseStudies: CaseStudy[] = [
     year: "2024",
     category: "Cloud & SaaS",
     link: "https://pdffilz.com",
-    image: "/pdf-p7.png",
+    image: "/pdf-p7.webp",
     tech: ["Next.js", "WebAssembly", "TypeScript", "Tailwind CSS"],
   },
   {
@@ -166,7 +166,7 @@ const caseStudies: CaseStudy[] = [
     year: "2024",
     category: "Web Platforms",
     link: "https://gbcc.com.co",
-    image: "/gbcc-p8.png",
+    image: "/gbcc-p8.webp",
     tech: ["Next.js", "Corporate Portal", "Tailwind CSS", "Framer Motion"],
   },
   {
@@ -182,7 +182,7 @@ const caseStudies: CaseStudy[] = [
     year: "2026",
     category: "Web Platforms",
     link: "https://m-studio-sigma.vercel.app",
-    image: "/mss-p9.png",
+    image: "/mss-p9.webp",
     tech: ["Next.js 15", "Creative Engineering", "Tailwind CSS", "TypeScript"],
   },
   {
@@ -198,7 +198,7 @@ const caseStudies: CaseStudy[] = [
     year: "2024",
     category: "AI & Automation",
     link: "https://lexpro-ai.vercel.app",
-    image: "/lex-p10.png",
+    image: "/lex-p10.webp",
     tech: ["Next.js", "Legal LLM Pipeline", "Tailwind CSS", "FastAPI"],
   },
   {
@@ -214,8 +214,72 @@ const caseStudies: CaseStudy[] = [
     year: "2024",
     category: "Cloud & SaaS",
     link: "https://corelytics-io.vercel.app",
-    image: "/saas-p11.png",
+    image: "/saas-p11.webp",
     tech: ["Next.js", "Data Telemetry", "PostgreSQL", "Tailwind CSS"],
+  },
+  {
+    id: 13,
+    title: "LEEMEVENTS.",
+    tagline: "All-In-One Verified Event Marketplace.",
+    quote:
+      "Discover how LEEMEVENTS creates clarity, legal security, and seamless connections for both event hosts and professional suppliers.",
+    description:
+      "LEEMEVENTS unites demand and verified supply into one central marketplace. Easily find the right event supplier, review service terms, align on specifications, and automatically generate binding agreements upon acceptance with KVK & VAT verification and personal assistant AI chatbot.",
+    service: "Event Marketplace & Booking",
+    sector: "Event Management & Services",
+    year: "2024",
+    category: "Web Platforms",
+    link: "https://leemevents.com",
+    image: "/p12-leem.webp",
+    tech: ["Next.js", "Marketplace Ecosystem", "Chatbot Assistant", "Tailwind CSS"],
+  },
+  {
+    id: 14,
+    title: "Cosy Hair Saloon.",
+    tagline: "Luxury Hair Care & Bespoke Salon Experience.",
+    quote:
+      "A modern boutique digital experience delivering bespoke styling, curated treatment portfolios, and effortless online appointment booking.",
+    description:
+      "Designed and engineered as a high-converting boutique salon platform. Features interactive appointment scheduling, stylist portfolios, service rate cards, and responsive client engagement.",
+    service: "Salon Web Platform & Booking",
+    sector: "Beauty, Grooming & Wellness",
+    year: "2024",
+    category: "Web Platforms",
+    link: "https://samiafarooq97.wixsite.com/my-site-21",
+    image: "/p13-cosy.webp",
+    tech: ["Creative Web", "Online Booking", "UI/UX Design", "Responsive Web"],
+  },
+  {
+    id: 15,
+    title: "California Poolman Inc.",
+    tagline: "Certified Commercial & Residential Pool Care.",
+    quote:
+      "Delivering crystal-clear aquatic perfection with certified water balancing, automated maintenance dispatch, and emergency repairs.",
+    description:
+      "Full-service aquatic management portal featuring weekly chemical balancing scheduling, preventative equipment maintenance dispatch, leak detection reporting, and transparent customer accounts.",
+    service: "Aquatic Service & Dispatch Portal",
+    sector: "Commercial & Residential Services",
+    year: "2024",
+    category: "Web Platforms",
+    link: "https://samiafarooq97.wixsite.com/my-site-9",
+    image: "/p14-cal.webp",
+    tech: ["Service Portal", "Client Scheduling", "UI/UX Design", "Responsive Web"],
+  },
+  {
+    id: 16,
+    title: "Guard Secure 24/7.",
+    tagline: "Round-The-Clock Enterprise Security & Surveillance.",
+    quote:
+      "Uncompromising vigilance: licensed physical guard deployment paired with centralized surveillance monitoring.",
+    description:
+      "Enterprise security services platform providing round-the-clock physical security personnel, centralized CCTV monitoring relays, rapid incident dispatch, and automated client security audits.",
+    service: "Security Infrastructure & Dispatch",
+    sector: "Surveillance, Guarding & Security",
+    year: "2024",
+    category: "Web Platforms",
+    link: "https://guardsecure247.de",
+    image: "/p15-gs.webp",
+    tech: ["Security Systems", "Monitoring Portal", "Tailwind CSS", "Next.js"],
   },
 ];
 
@@ -323,9 +387,9 @@ export default function ProjectsPage() {
                             src={item.image}
                             alt={item.title}
                             fill
-                            unoptimized
+                            loading={index <= 2 ? "eager" : "lazy"}
                             priority={index <= 1}
-                            className="object-contain w-full h-full select-none pointer-events-none drop-shadow-sm"
+                            className="object-contain w-full h-full select-none pointer-events-none drop-shadow-sm transition-opacity duration-300"
                             sizes="(max-width: 1024px) 100vw, 800px"
                           />
                         </motion.div>

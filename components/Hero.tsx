@@ -8,28 +8,28 @@ import Link from "next/link";
 
 const Hero = () => {
   return (
-    <section className="relative w-full min-h-[100dvh] sm:min-h-screen max-h-[1050px] px-4 sm:px-6 flex flex-col items-center justify-start pt-28 sm:pt-20 md:pt-24 overflow-hidden bg-[#FAF9FF]">
+    <section className="relative w-full min-h-[100svh] sm:min-h-screen max-h-[1050px] px-4 sm:px-6 flex flex-col items-center justify-start pt-12 sm:pt-20 md:pt-24 overflow-hidden bg-[#FAF9FF] [transform:translate3d(0,0,0)]">
 
       {/* --- 1A. MOBILE DEDICATED PORTRAIT HERO BACKGROUND --- */}
-      <div className="block sm:hidden absolute inset-0 z-0 pointer-events-none overflow-hidden">
+      <div className="block sm:hidden absolute inset-0 z-0 pointer-events-none overflow-hidden [transform:translate3d(0,0,0)] will-change-transform">
         <Image
           src="/hero-bg-mobile.jpg"
           alt="AS CODEX Digital Platform Mobile"
           fill
           priority
-          className="w-full h-full object-cover object-top"
+          className="w-full h-full object-cover object-bottom pointer-events-none select-none"
           sizes="100vw"
         />
       </div>
 
       {/* --- 1B. DESKTOP LANDSCAPE HERO BACKGROUND (100% ORIGINAL QUALITY) --- */}
-      <div className="hidden sm:block absolute inset-0 z-0 pointer-events-none overflow-hidden">
+      <div className="hidden sm:block absolute inset-0 z-0 pointer-events-none overflow-hidden [transform:translate3d(0,0,0)] will-change-transform">
         <Image
           src="/hero-bg-1.png"
           alt="AS CODEX Digital Platform"
           fill
           priority
-          className="w-full h-full object-cover object-bottom"
+          className="w-full h-full object-cover object-bottom pointer-events-none select-none"
           sizes="100vw"
         />
       </div>

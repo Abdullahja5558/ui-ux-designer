@@ -1,17 +1,25 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About AS CODEX | Enterprise Architecture & Digital Innovation",
+  title: "About AS CODEX | Elite Digital Engineering & IT Solutions Agency",
   description:
-    "Discover AS CODEX — an elite digital engineering collective architecting scalable cloud platforms, enterprise microservices, intuitive UI/UX design, and AI automation for visionary enterprises worldwide.",
+    "Discover AS CODEX — premier digital engineering collective architecting scalable custom software, cloud microservices, intuitive UI/UX design systems, and AI automation for visionary enterprises worldwide.",
+  keywords: [
+    "About AS CODEX",
+    "Digital Engineering Collective",
+    "Enterprise Software Agency Pakistan",
+    "Senior Full Stack Engineering Team",
+    "Custom Software Company",
+    "Cloud Architecture Specialists",
+  ],
   alternates: {
-    canonical: "https://ascodex.com/about",
+    canonical: "https://ascodex.vercel.app/about",
   },
   openGraph: {
-    title: "About AS CODEX | Enterprise Architecture & Digital Innovation",
+    title: "About AS CODEX | Elite Digital Engineering & IT Solutions Agency",
     description:
       "Discover our philosophy where architectural rigor meets creative design fluidity. 99.99% cloud uptime, senior staff engineering, and 100% client code ownership.",
-    url: "https://ascodex.com/about",
+    url: "https://ascodex.vercel.app/about",
     siteName: "AS CODEX",
     type: "website",
     images: [
@@ -25,7 +33,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "About AS CODEX | Enterprise Architecture & Digital Innovation",
+    title: "About AS CODEX | Elite Digital Engineering Agency",
     description:
       "Discover AS CODEX engineering philosophy, cloud architectures, and bespoke software solutions.",
     images: ["/navbar-2.png"],

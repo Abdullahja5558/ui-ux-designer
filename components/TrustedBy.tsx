@@ -10,28 +10,44 @@ interface LogoItem {
   alt: string;
 }
 
-const clientLogos: LogoItem[] = [
-  { id: "logo-1", src: "/1.png", alt: "AJ Code" },
-  { id: "logo-2", src: "/2.png", alt: "Pdffilz" },
-  { id: "logo-3", src: "/3.png", alt: "DL Luxe" },
-  { id: "logo-4", src: "/4.png", alt: "Coder Platform" },
-  { id: "logo-5", src: "/5.png", alt: "GBCC Building Company" },
-  { id: "logo-6", src: "/6.png", alt: "NoorQuran" },
+// Layer 1: 5 Logos (1.png to 5.png)
+const layer1Logos: LogoItem[] = [
+  { id: "logo-1", src: "/1.png", alt: "Client Partner 1" },
+  { id: "logo-2", src: "/2.png", alt: "Client Partner 2" },
+  { id: "logo-3", src: "/3.png", alt: "Client Partner 3" },
+  { id: "logo-4", src: "/4.png", alt: "Client Partner 4" },
+  { id: "logo-5", src: "/5.png", alt: "Client Partner 5" },
 ];
 
-export default function TrustedBy() {
-  // Repeat logos 4 times for seamless continuous infinite marquee
-  const repeatedLogos = [
-    ...clientLogos,
-    ...clientLogos,
-    ...clientLogos,
-    ...clientLogos,
-  ];
+// Layer 2: 5 Logos (6.png to 10.png)
+const layer2Logos: LogoItem[] = [
+  { id: "logo-6", src: "/6.png", alt: "Client Partner 6" },
+  { id: "logo-7", src: "/7.png", alt: "Client Partner 7" },
+  { id: "logo-8", src: "/8.png", alt: "Client Partner 8" },
+  { id: "logo-9", src: "/9.png", alt: "Client Partner 9" },
+  { id: "logo-10", src: "/10.png", alt: "Client Partner 10" },
+];
 
+// Layer 3: 6 Logos (11.png to 16.png)
+const layer3Logos: LogoItem[] = [
+  { id: "logo-11", src: "/11.png", alt: "Client Partner 11" },
+  { id: "logo-12", src: "/12.png", alt: "Client Partner 12" },
+  { id: "logo-13", src: "/13.png", alt: "Client Partner 13" },
+  { id: "logo-14", src: "/14-dark.png", alt: "Client Partner 14" },
+  { id: "logo-15", src: "/15.png", alt: "Client Partner 15" },
+  { id: "logo-16", src: "/16-dark.png", alt: "Client Partner 16" },
+];
+
+// Repeat 4x to ensure uninterrupted, seamless infinite scrolling loops
+const repeatedLayer1 = [...layer1Logos, ...layer1Logos, ...layer1Logos, ...layer1Logos];
+const repeatedLayer2 = [...layer2Logos, ...layer2Logos, ...layer2Logos, ...layer2Logos];
+const repeatedLayer3 = [...layer3Logos, ...layer3Logos, ...layer3Logos, ...layer3Logos];
+
+export default function TrustedBy() {
   return (
-    <section className="relative w-full py-16 sm:py-24 bg-[#FAF9FF] overflow-hidden select-none">
-      {/* SECTION HEADING (STRICTLY 2 LINES WITH SIGNATURE PURPLE SPAN) */}
-      <div className="max-w-7xl mx-auto px-4 mb-12 sm:mb-16 md:mb-20 text-center">
+    <section className="relative w-full py-16 sm:py-20 md:py-24 bg-[#FAF9FF] overflow-hidden select-none">
+      {/* SECTION HEADING (STRICTLY 2 LINES, NO PARAGRAPH, PURPLE BG SPAN) */}
+      <div className="max-w-7xl mx-auto px-4 mb-10 sm:mb-14 md:mb-16 text-center">
         <motion.h2
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -45,47 +61,79 @@ export default function TrustedBy() {
             </span>
           </span>
         </motion.h2>
-
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="mt-4 sm:mt-5 text-sm sm:text-base md:text-lg text-[#626477] font-normal leading-relaxed max-w-2xl mx-auto text-center"
-        >
-          Powering digital transformation, scalable platforms and high-impact products for market leaders.
-        </motion.p>
       </div>
 
-      {/* CONTINUOUS MARQUEE CAROUSEL (LEFT TO RIGHT, NO BORDERS, NO SHADOWS, PAUSE ON HOVER) */}
-      <div className="relative w-full overflow-hidden flex items-center py-2">
-        {/* Left Fade Gradient Mask */}
-        <div className="absolute left-0 inset-y-0 w-16 sm:w-32 md:w-48 bg-gradient-to-r from-[#FAF9FF] via-[#FAF9FF]/90 to-transparent z-10 pointer-events-none" />
+      {/* 3 CONTINUOUS INFINITE MARQUEE LAYERS */}
+      <div className="relative w-full overflow-hidden space-y-6 sm:space-y-8 md:space-y-10 py-4 sm:py-6 md:py-8">
+        {/* Left & Right Edge Ambient Gradient Fade Masks (Extended Width & Full Height) */}
+        <div className="absolute left-0 -inset-y-6 w-24 sm:w-44 md:w-64 lg:w-80 bg-gradient-to-r from-[#FAF9FF] via-[#FAF9FF]/95 via-40% to-transparent z-20 pointer-events-none" />
+        <div className="absolute right-0 -inset-y-6 w-24 sm:w-44 md:w-64 lg:w-80 bg-gradient-to-l from-[#FAF9FF] via-[#FAF9FF]/95 via-40% to-transparent z-20 pointer-events-none" />
 
-        {/* Right Fade Gradient Mask */}
-        <div className="absolute right-0 inset-y-0 w-16 sm:w-32 md:w-48 bg-gradient-to-l from-[#FAF9FF] via-[#FAF9FF]/90 to-transparent z-10 pointer-events-none" />
+        {/* LAYER 1: 5 Logos (Right to Left continuous infinite flow) */}
+        <div className="relative w-full overflow-hidden flex items-center">
+          <div className="flex items-center gap-10 sm:gap-16 md:gap-20 w-max animate-marquee-rtl">
+            {repeatedLayer1.map((logo, idx) => (
+              <div
+                key={`layer1-${logo.id}-${idx}`}
+                className="shrink-0 flex items-center justify-center px-2 py-1"
+              >
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={240}
+                  height={110}
+                  priority={idx < 5}
+                  className="h-9 sm:h-11 md:h-13 lg:h-14 w-auto max-w-[130px] sm:max-w-[170px] md:max-w-[210px] object-contain opacity-90 transition-opacity duration-200 pointer-events-none"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
 
-        {/* Moving Track (Flows Left to Right) */}
-        <div className="flex items-center gap-12 sm:gap-16 md:gap-24 w-max animate-marquee-ltr hover:[animation-play-state:paused]">
-          {repeatedLogos.map((logo, idx) => (
-            <div
-              key={`${logo.id}-${idx}`}
-              className="shrink-0 flex items-center justify-center px-2 py-2"
-            >
-              <Image
-                src={logo.src}
-                alt={logo.alt}
-                width={280}
-                height={140}
-                priority={idx < 6}
-                className="h-12 sm:h-16 md:h-20 lg:h-22 w-auto max-w-[150px] sm:max-w-[210px] md:max-w-[260px] object-contain opacity-90 hover:opacity-100 transition-opacity duration-200 pointer-events-none"
-              />
-            </div>
-          ))}
+        {/* LAYER 2: 5 Logos (Left to Right continuous infinite flow - opposite direction) */}
+        <div className="relative w-full overflow-hidden flex items-center">
+          <div className="flex items-center gap-10 sm:gap-16 md:gap-20 w-max animate-marquee-ltr">
+            {repeatedLayer2.map((logo, idx) => (
+              <div
+                key={`layer2-${logo.id}-${idx}`}
+                className="shrink-0 flex items-center justify-center px-2 py-1"
+              >
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={240}
+                  height={110}
+                  priority={idx < 5}
+                  className="h-9 sm:h-11 md:h-13 lg:h-14 w-auto max-w-[130px] sm:max-w-[170px] md:max-w-[210px] object-contain opacity-90 transition-opacity duration-200 pointer-events-none"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* LAYER 3: 6 Logos (Right to Left continuous infinite flow) */}
+        <div className="relative w-full overflow-hidden flex items-center">
+          <div className="flex items-center gap-10 sm:gap-16 md:gap-20 w-max animate-marquee-rtl">
+            {repeatedLayer3.map((logo, idx) => (
+              <div
+                key={`layer3-${logo.id}-${idx}`}
+                className="shrink-0 flex items-center justify-center px-2 py-1"
+              >
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={240}
+                  height={110}
+                  priority={idx < 6}
+                  className="h-9 sm:h-11 md:h-13 lg:h-14 w-auto max-w-[130px] sm:max-w-[170px] md:max-w-[210px] object-contain opacity-90 transition-opacity duration-200 pointer-events-none"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* CSS KEYFRAME FOR SMOOTH HARDWARE-ACCELERATED LEFT-TO-RIGHT MARQUEE */}
+      {/* HARDWARE-ACCELERATED BIDIRECTIONAL NON-STOP INFINITE KEYFRAMES */}
       <style jsx>{`
         @keyframes marqueeLtr {
           0% {
@@ -95,8 +143,20 @@ export default function TrustedBy() {
             transform: translate3d(0%, 0, 0);
           }
         }
+        @keyframes marqueeRtl {
+          0% {
+            transform: translate3d(0%, 0, 0);
+          }
+          100% {
+            transform: translate3d(-50%, 0, 0);
+          }
+        }
         .animate-marquee-ltr {
-          animation: marqueeLtr 26s linear infinite;
+          animation: marqueeLtr 36s linear infinite;
+          will-change: transform;
+        }
+        .animate-marquee-rtl {
+          animation: marqueeRtl 36s linear infinite;
           will-change: transform;
         }
       `}</style>

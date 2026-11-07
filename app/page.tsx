@@ -4,6 +4,7 @@ import React from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import TrustedBy from "@/components/TrustedBy";
+import About from "@/components/About";
 import Services from "@/components/Service";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Project";
@@ -19,6 +20,7 @@ const page = () => {
       <main id="main-content" className="w-full">
         <Hero />
         <TrustedBy />
+        <About />
         <Services />
         <Skills />
          <HowItWork />

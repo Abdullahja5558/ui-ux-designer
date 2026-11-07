@@ -1,17 +1,26 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Initiate Discovery Call & Project Inquiry",
+  title: "Contact AS CODEX | Hire Software Developers & Schedule Consultation",
   description:
-    "Connect directly with AS CODEX principal cloud architects and software engineers. Schedule a confidential discovery session to scope your architecture, verify SLAs, and evaluate technical requirements.",
+    "Connect directly with AS CODEX principal cloud architects and senior software engineers. Schedule a confidential technical discovery call to scope custom software development, cloud infrastructure, or UI/UX platform requirements.",
+  keywords: [
+    "Contact AS CODEX",
+    "Hire Software Developers",
+    "Hire Next.js Team",
+    "Schedule Technical Discovery Call",
+    "Custom Software Quote",
+    "Software Development Agency Contact",
+    "Dedicated Engineering Teams Consultation",
+  ],
   alternates: {
-    canonical: "https://ascodex.com/contact",
+    canonical: "https://ascodex.vercel.app/contact",
   },
   openGraph: {
-    title: "Initiate Discovery Call & Project Inquiry | AS CODEX",
+    title: "Contact AS CODEX | Hire Software Developers & Schedule Consultation",
     description:
-      "Schedule a confidential discovery session with AS CODEX engineering directors to evaluate your requirements and scope your roadmap.",
-    url: "https://ascodex.com/contact",
+      "Schedule a confidential technical discovery session with AS CODEX engineering directors to scope your roadmap under strict NDA protection.",
+    url: "https://ascodex.vercel.app/contact",
     siteName: "AS CODEX",
     type: "website",
     images: [
@@ -25,7 +34,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Initiate Discovery Call & Project Inquiry | AS CODEX",
+    title: "Contact AS CODEX | Hire Software Developers & Schedule Consultation",
     description:
       "Connect directly with AS CODEX principal cloud architects and software engineers.",
     images: ["/navbar-2.png"],
@@ -39,4 +48,3 @@ export default function ContactLayout({
 }) {
   return <>{children}</>;
 }
-

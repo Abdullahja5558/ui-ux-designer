@@ -5,13 +5,13 @@ export const metadata: Metadata = {
   description:
     "Master client service agreement terms, 100% intellectual property ownership transfer, milestone acceptance criteria, and 99.99% infrastructure SLAs.",
   alternates: {
-    canonical: "https://ascodex.com/terms",
+    canonical: "https://ascodex.vercel.app/terms",
   },
   openGraph: {
     title: "Terms of Service & Client Engagement | AS CODEX",
     description:
       "Master client service agreement terms, 100% intellectual property ownership transfer, and enterprise SLAs.",
-    url: "https://ascodex.com/terms",
+    url: "https://ascodex.vercel.app/terms",
     siteName: "AS CODEX",
     type: "website",
     images: [
@@ -39,4 +39,3 @@ export default function TermsLayout({
 }) {
   return <>{children}</>;
 }
-

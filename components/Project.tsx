@@ -26,7 +26,7 @@ const projects: Project[] = [
     type: "Developer Tooling • Web App",
     year: "2024",
     link: "https://aj-code.vercel.app",
-    image: "/aj-code-p1.png",
+    image: "/aj-code-p1.webp",
     description: "Cloud-native code workspace with live collaborative synchronization, WebAssembly sandbox, and automated CI deployment.",
     tech: ["Next.js 15", "TypeScript", "Docker", "Tailwind CSS"],
   },
@@ -37,7 +37,7 @@ const projects: Project[] = [
     type: "Client-Side WebAssembly • SaaS Utility",
     year: "2024",
     link: "https://pdffilz.com",
-    image: "/pdf-p7.png",
+    image: "/pdf-p7.webp",
     description: "100% private in-browser document suite. Fast and highly utilitarian tools to merge, compress, convert, edit, and sign documents with zero server uploads.",
     tech: ["Next.js", "WebAssembly", "TypeScript", "Tailwind CSS"],
   },
@@ -48,7 +48,7 @@ const projects: Project[] = [
     type: "Enterprise Analytics • Big Data SaaS",
     year: "2024",
     link: "https://corelytics-io.vercel.app",
-    image: "/saas-p11.png",
+    image: "/saas-p11.webp",
     description: "Empowering businesses by stripping away data noise and revealing the truth beneath. Helping global teams across 6 continents make smarter decisions.",
     tech: ["Next.js", "Data Telemetry", "PostgreSQL", "Tailwind CSS"],
   },
@@ -59,7 +59,7 @@ const projects: Project[] = [
     type: "AI Legal Powerhouse • LegalTech",
     year: "2024",
     link: "https://lexpro-ai.vercel.app",
-    image: "/lex-p10.png",
+    image: "/lex-p10.webp",
     description: "The Future of Justice. Elite legal AI platform translating complex statutory procedures and contract analysis into clear, actionable insights.",
     tech: ["Next.js", "Legal AI Pipeline", "Tailwind CSS", "FastAPI"],
   },
@@ -70,7 +70,7 @@ const projects: Project[] = [
     type: "High-End Architecture • Creative Dev",
     year: "2026",
     link: "https://m-studio-sigma.vercel.app",
-    image: "/mss-p9.png",
+    image: "/mss-p9.webp",
     description: "Beyond the Pixel Perfect. Digital sanctuary where architecture meets high-end development: reducing clutter until your vision can breathe.",
     tech: ["Next.js 15", "Creative Engineering", "Tailwind CSS", "TypeScript"],
   },
@@ -81,7 +81,7 @@ const projects: Project[] = [
     type: "Commercial Infrastructure & Civil Works",
     year: "2024",
     link: "https://gbcc.com.co",
-    image: "/gbcc-p8.png",
+    image: "/gbcc-p8.webp",
     description: "Structure → Waterproofing → Maintenance → Finishing. Delivering complete structural works, advanced waterproofing, and high-quality finishing solutions.",
     tech: ["Next.js", "Corporate Portal", "Tailwind CSS", "Framer Motion"],
   },
@@ -92,7 +92,7 @@ const projects: Project[] = [
     type: "Multi-Region Content Delivery Platform",
     year: "2024",
     link: "https://noor-ulquran.vercel.app",
-    image: "/quran-p3.png",
+    image: "/quran-p3.webp",
     description: "Global educational streaming platform serving audio, interactive recitation analytics, and structured learning modules.",
     tech: ["Next.js", "PostgreSQL", "Cloudflare CDN", "Tailwind CSS"],
   },
@@ -103,9 +103,53 @@ const projects: Project[] = [
     type: "Real-time Booking & Reservation Engine",
     year: "2024",
     link: "https://bucceo-diving.vercel.app",
-    image: "/diving-p4.png",
+    image: "/diving-p4.webp",
     description: "Multi-currency tour booking engine with live calendar inventory, Stripe Connect payouts, and automated notifications.",
     tech: ["React", "Node.js", "Stripe API", "MongoDB"],
+  },
+  {
+    id: 9,
+    title: "LEEMEVENTS — Event Marketplace & Services",
+    category: "Web Platforms",
+    type: "B2B / B2C Event Marketplace & Ecosystem",
+    year: "2024",
+    link: "https://leemevents.com",
+    image: "/p12-leem.webp",
+    description: "All-in-one verified event services marketplace connecting event hosts with verified suppliers, automated legal contracts, KVK & VAT validation, and an AI personal assistant chatbot.",
+    tech: ["Next.js", "Event Marketplace", "Chatbot Assistant", "Tailwind CSS"],
+  },
+  {
+    id: 10,
+    title: "Cosy Hair Saloon — Luxury Grooming & Booking",
+    category: "Web Platforms",
+    type: "Boutique Salon & Online Booking Experience",
+    year: "2024",
+    link: "https://samiafarooq97.wixsite.com/my-site-21",
+    image: "/p13-cosy.webp",
+    description: "Modern boutique salon platform offering bespoke hair care styling, curated treatment portfolios, and seamless digital appointment scheduling.",
+    tech: ["Creative Web", "Online Booking", "UI/UX Design", "Responsive Web"],
+  },
+  {
+    id: 11,
+    title: "California Poolman Inc. — Pool Care & Dispatch",
+    category: "Web Platforms",
+    type: "Commercial & Residential Pool Care Portal",
+    year: "2024",
+    link: "https://samiafarooq97.wixsite.com/my-site-9",
+    image: "/p14-cal.webp",
+    description: "Professional aquatic maintenance and service dispatch portal offering weekly chemical balancing, equipment repairs, and certified pool care management.",
+    tech: ["Service Portal", "Client Scheduling", "UI/UX Design", "Responsive Web"],
+  },
+  {
+    id: 12,
+    title: "Guard Secure 24/7 — Security & Surveillance",
+    category: "Web Platforms",
+    type: "Enterprise Physical & Electronic Security Portal",
+    year: "2024",
+    link: "https://guardsecure247.de",
+    image: "/p15-gs.webp",
+    description: "Round-the-clock enterprise protection platform offering licensed security guard deployment, CCTV live monitoring integration, and rapid emergency response dispatch.",
+    tech: ["Security Systems", "Monitoring Portal", "Tailwind CSS", "Next.js"],
   },
 ];
 
@@ -178,16 +222,16 @@ const Projects = () => {
                 transition={{ duration: 0.35 }}
                 className="flex flex-col gap-4 sm:gap-5 w-full"
               >
-                {/* 1. PURE PROJECT IMAGE (NO BOX, NO BORDER, NO HOVER ANIMATION) */}
-                <div className="relative w-full aspect-[3/2] overflow-hidden rounded-2xl sm:rounded-3xl border-0 shadow-none">
+                {/* 1. PURE PROJECT IMAGE (NO BOX, TRANSPARENT BACKGROUND) */}
+                <div className="relative w-full aspect-[3/2] overflow-hidden rounded-2xl sm:rounded-3xl border-0 shadow-none bg-transparent">
                   <Image
                     src={project.image}
                     alt={project.title}
                     fill
-                    unoptimized
+                    loading={project.id <= 4 ? "eager" : "lazy"}
                     priority={project.id <= 2}
-                    className="object-contain sm:object-cover w-full h-full select-none pointer-events-none"
-                    sizes="(max-width: 768px) 100vw, 800px"
+                    className="object-contain sm:object-cover w-full h-full select-none pointer-events-none transition-opacity duration-300"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                   />
                 </div>
 

@@ -15,24 +15,31 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
 
   title: {
-    default: "AS CODEX | Custom Software Development, Cloud Architecture & UI/UX Agency",
-    template: "%s | AS CODEX — Enterprise Digital Solutions",
+    default: "AS CODEX | Custom Software Development, Cloud Architecture & IT Solutions Agency",
+    template: "%s | AS CODEX — Custom Software Development & IT Solutions",
   },
 
   description:
-    "AS CODEX is a top-tier digital engineering agency building scalable custom software, high-concurrency microservices, cloud infrastructure (AWS/Azure/GCP), and human-centered UI/UX design systems for visionary founders, startups, and global enterprises.",
+    "AS CODEX is an elite digital engineering agency architecting high-throughput custom software, scalable cloud infrastructure (AWS/Azure/GCP), modern web platforms, AI automation pipelines, and conversion-engineered UI/UX design systems for visionary founders and global enterprises.",
 
   applicationName: "AS CODEX",
 
   keywords: [
-    // Top-tier commercial agency keywords
-    "Top Software Development Company",
+    // Brand & Agency Authority
+    "AS CODEX",
+    "AS CODEX Software Company",
+    "AS CODEX IT Solutions",
+    "AS CODEX Digital Engineering",
+    // High-Intent Client Buyer Keywords
+    "Custom Software Development Company",
+    "Enterprise IT Solutions Agency",
+    "Custom Web Development Services",
     "Hire Dedicated Senior Developers",
     "Hire Full Stack Next.js Developers",
     "Custom Enterprise Software Development",
     "SaaS MVP Product Engineering",
     "Full Stack Web & Mobile App Development",
-    "UI/UX Design Agency for Startups",
+    "UI/UX Design Agency for Tech Startups",
     "Cloud Architecture & Scalability Consulting",
     "AWS Azure GCP DevOps Kubernetes CI/CD",
     "Microservices & Distributed Systems Engineering",
@@ -41,8 +48,7 @@ export const metadata: Metadata = {
     "Nearshore & Offshore Dedicated Engineering Teams",
     "High Concurrency Low Latency Platforms",
     "FinTech HealthTech SaaS Software Solutions",
-    "AS CODEX",
-    "AS CODEX Digital Engineering",
+    "Software Consulting & System Architecture Review",
   ],
 
   authors: [{ name: "AS CODEX", url: siteUrl }],
@@ -86,7 +92,7 @@ export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
 
   openGraph: {
-    title: "AS CODEX | Custom Software Development, Cloud Architecture & UI/UX Agency",
+    title: "AS CODEX | Custom Software Development, Cloud Architecture & IT Solutions Agency",
     description:
       "Premier digital engineering agency architecting high-performance custom software, cloud microservices, and conversion-focused UI/UX design systems for visionary enterprises worldwide.",
     url: siteUrl,
@@ -119,9 +125,10 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": ["Organization", "ProfessionalService"],
+      "@type": ["Organization", "ProfessionalService", "ITService"],
       "@id": `${siteUrl}/#organization`,
       name: "AS CODEX",
+      alternateName: ["AS CODEX IT Solutions", "AS CODEX Software Agency"],
       url: siteUrl,
       logo: `${siteUrl}/navbar-2.png`,
       image: `${siteUrl}/navbar-2.png`,
@@ -130,7 +137,16 @@ const jsonLd = {
       email: "contact@ascodex.com",
       telephone: "+92-371-5909509",
       priceRange: "$$$",
-      areaServed: "Worldwide",
+      currenciesAccepted: "USD, EUR, GBP, AED, PKR",
+      paymentAccepted: "Credit Card, Bank Transfer, Stripe, Wire Transfer",
+      areaServed: [
+        "Worldwide",
+        "United States",
+        "United Kingdom",
+        "Europe",
+        "Middle East",
+        "Pakistan",
+      ],
       sameAs: [
         "https://github.com/ascodex",
         "https://linkedin.com/company/ascodex",
@@ -155,12 +171,13 @@ const jsonLd = {
       aggregateRating: {
         "@type": "AggregateRating",
         ratingValue: "4.9",
-        reviewCount: "68",
+        reviewCount: "84",
         bestRating: "5",
         worstRating: "1",
       },
       knowsAbout: [
         "Custom Software Engineering",
+        "Enterprise Web Application Development",
         "Hire Dedicated Senior Developers",
         "Cloud Infrastructure & Scalability",
         "Kubernetes & Docker DevOps Automation",
@@ -172,51 +189,51 @@ const jsonLd = {
       ],
       hasOfferCatalog: {
         "@type": "OfferCatalog",
-        name: "AS CODEX IT Solutions & Software Engineering",
+        name: "AS CODEX IT Solutions & Software Engineering Services",
         itemListElement: [
           {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
-              name: "Cloud Infrastructure & DevOps",
+              name: "Cloud Infrastructure & DevOps Scalability",
               description:
-                "Enterprise AWS, Azure, and Google Cloud environments built with Kubernetes, Docker, and CI/CD automation for 99.99% uptime.",
+                "Enterprise AWS, Azure, and Google Cloud environments built with Kubernetes, Docker, and CI/CD automation for 99.99% uptime and zero-downtime scaling.",
             },
           },
           {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
-              name: "Custom Enterprise Software & Microservices",
+              name: "Custom Enterprise Software & Web Development",
               description:
-                "High-throughput web applications, microservices, and distributed backend architectures engineered for high concurrency.",
+                "High-throughput web applications, microservices, and distributed backend architectures engineered for high concurrency, ultra-low latency, and mission-critical reliability.",
             },
           },
           {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
-              name: "UI/UX Design & Prototyping",
+              name: "UI/UX Design Systems & High-Fidelity Prototyping",
               description:
-                "Human-centered design systems, responsive web & mobile interfaces, and high-fidelity Figma prototypes engineered for conversion.",
+                "Human-centered design systems, responsive web & mobile interfaces, and high-fidelity Figma prototypes engineered for maximum engagement and effortless user flow.",
             },
           },
           {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
-              name: "Intelligent AI & Automation",
+              name: "Intelligent AI & Automation Pipelines",
               description:
-                "End-to-end integration of LLMs, proprietary AI agents, computer vision, and machine learning pipelines that automate operations.",
+                "End-to-end integration of LLMs, proprietary AI agents, computer vision, and machine learning pipelines that automate complex operations with real-time feedback loops.",
             },
           },
           {
             "@type": "Offer",
             itemOffered: {
               "@type": "Service",
-              name: "Cybersecurity & Data Systems",
+              name: "Zero-Trust Cybersecurity & Cryptographic Systems",
               description:
-                "Hardened application security, automated compliance auditing, role-based access control, and zero-trust cryptographic data storage.",
+                "Hardened application security, automated compliance auditing, role-based access control, and resilient cryptographic data storage architectures.",
             },
           },
         ],
@@ -245,7 +262,7 @@ const jsonLd = {
         },
         {
           "@type": "Question",
-          name: "How quickly can AS CODEX start on a new digital project?",
+          name: "How quickly can AS CODEX start on a new client project?",
           acceptedAnswer: {
             "@type": "Answer",
             text: "We begin with a complimentary technical discovery call and can deploy dedicated senior engineers or sprint teams within 48 to 72 hours under strict NDA protection.",

@@ -5,13 +5,13 @@ export const metadata: Metadata = {
   description:
     "Explore AS CODEX enterprise privacy framework, zero-claim intellectual property guarantees, GDPR/CCPA compliance, and cryptographic data protection protocols.",
   alternates: {
-    canonical: "https://ascodex.com/privacy",
+    canonical: "https://ascodex.vercel.app/privacy",
   },
   openGraph: {
     title: "Enterprise Privacy Framework & Data Governance | AS CODEX",
     description:
       "Explore AS CODEX enterprise privacy framework, zero-claim intellectual property guarantees, and GDPR/CCPA compliance.",
-    url: "https://ascodex.com/privacy",
+    url: "https://ascodex.vercel.app/privacy",
     siteName: "AS CODEX",
     type: "website",
     images: [
@@ -39,4 +39,3 @@ export default function PrivacyLayout({
 }) {
   return <>{children}</>;
 }
-

@@ -5,13 +5,13 @@ export const metadata: Metadata = {
   description:
     "Learn about AS CODEX zero-trust security framework, automated DevSecOps, hardened cloud environments (AWS/Azure/GCP), and AES-256 cryptographic vaults.",
   alternates: {
-    canonical: "https://ascodex.com/security",
+    canonical: "https://ascodex.vercel.app/security",
   },
   openGraph: {
     title: "Enterprise Security Standards & Infrastructure Defense | AS CODEX",
     description:
       "Zero-trust architecture, automated penetration testing, cryptographic data vaults, and 24/7 incident response protocols.",
-    url: "https://ascodex.com/security",
+    url: "https://ascodex.vercel.app/security",
     siteName: "AS CODEX",
     type: "website",
     images: [
@@ -39,4 +39,3 @@ export default function SecurityLayout({
 }) {
   return <>{children}</>;
 }
-
